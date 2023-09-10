@@ -25,12 +25,12 @@ module.exports = {
         unique: true
       },
       cpf: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
         allowNull: false,
         unique: true
       },
       rg: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
         allowNull: false,
         unique: true
       },

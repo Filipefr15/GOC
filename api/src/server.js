@@ -13,5 +13,5 @@ server.use(routes);
 
 const PORT = 8080;
 server.listen(PORT, () => {
-    console.log(`API iniciada: http://localhost:${PORT}`);
+    console.log(`API iniciada: http://localhost:${PORT} 🚀`);
 });

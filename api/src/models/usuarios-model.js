@@ -6,12 +6,12 @@ class UsuariosModel extends Model {
             name: DataTypes.TEXT,
             password: DataTypes.TEXT,
             email: DataTypes.TEXT,
-            cpf: DataTypes.INTEGER,
-            rg: DataTypes.INTEGER,
+            cpf: DataTypes.TEXT,
+            rg: DataTypes.TEXT,
             estado: DataTypes.TEXT,
             bairro: DataTypes.TEXT,
             cep: DataTypes.INTEGER,
-            dataNasc: DataTypes.DATE         
+            dataNasc: DataTypes.DATE
         }, {
             tableName: 'usuarios',
             modelName: 'UsuariosModel',
