@@ -65,6 +65,22 @@ class UsuariosController {
             return httpHelper.internalError(error);
         }
     }
+
+    async delete(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { id } = request.params;
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+            const usuariosExists = await UsuariosModel.findOne({ where: { id } });
+            if (!usuariosExists) return httpHelper.notFound('Usuário não encontrado!');
+            await UsuariosModel.destroy({ where: { id } });
+            return httpHelper.ok({
+                message: 'Usuário deletado com sucesso!'
+            })
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
 }
 
 module.exports = { UsuariosController };
