@@ -34,12 +34,7 @@ class BoletimOcorrenciaController {
                 nomeMaeComunicante
             });
             if (!boletimOcorrencia) return httpHelper.badRequest('Houve um erro ao criar usuário');
-            const accessToken = jwt.sign(
-                { id: boletimOcorrencia.id },
-                process.env.TOKEN_SECRET,
-                { expiresIn: process.env.TOKEN_EXPIRES_IN }
-            );
-            return httpHelper.created({ accessToken });
+            return httpHelper.created('Boletim de Ocorrências protocolado com sucesso!');
         } catch (error) {
             return httpHelper.internalError(error);
         }

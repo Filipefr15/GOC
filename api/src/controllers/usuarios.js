@@ -81,6 +81,17 @@ class UsuariosController {
             return httpHelper.internalError(error);
         }
     }
+
+        async getAll(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const usuarios = await UsuariosModel.findAll();
+            return httpHelper.ok(usuarios);
+        } catch (error) {
+            return httpHelper.internalError(usuarios);
+        }
+    }
+
 }
 
 module.exports = { UsuariosController };

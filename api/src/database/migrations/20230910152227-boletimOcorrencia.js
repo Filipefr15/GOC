@@ -40,14 +40,12 @@ module.exports = {
         allowNull: false
       },
       cpfComunicante: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
         allowNull: false,
-        unique: true
       },
       rgComunicante: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.TEXT,
         allowNull: false,
-        unique: true
       },
       nomeComunicante: {
         type: Sequelize.TEXT,
