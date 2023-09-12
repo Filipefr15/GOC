@@ -65,6 +65,41 @@ class BoletimOcorrenciaController {
             return httpHelper.internalError(gestor);
         }
     }
+
+    async update(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { id } = request.params;
+            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante } = request.body;
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+            // if (unidadeMedida) {
+            //     const unityIsValid = Validates.validUnity(unidadeMedida);
+            //     if (!unityIsValid) return httpHelper.badRequest('Unidade de medida inválido!');
+            // }
+            const boletimExists = await BoletimOcorrenciaModel.findByPk(id);
+            if (!boletimExists) return httpHelper.notFound('Boletim de Ocorrência não encontrado!');
+            await BoletimOcorrenciaModel.update({
+                data,
+                tipoOcorrencia,
+                estadoOcorrencia,
+                municipioOcorrencia,
+                bairroOcorrencia,
+                detalhesLocalOcorrencia,
+                narrativaOcorrencia,
+                cpfComunicante,
+                rgComunicante,
+                nomeComunicante,
+                nomeMaeComunicante
+            }, {
+                where: { id }
+            });
+            return httpHelper.ok({
+                message: 'Boletim de Ocorrência atualizado com sucesso!'
+            });
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
 }
 
 module.exports = { BoletimOcorrenciaController };

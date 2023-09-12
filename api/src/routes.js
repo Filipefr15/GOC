@@ -20,18 +20,19 @@ const boletimOcorrenciaController = new BoletimOcorrenciaController();
 
 routes.post('/register', usuariosController.register);
 routes.post('/login', usuariosController.login);
-routes.delete('/delete/:id', usuariosController.delete);
-routes.get('/usuarios', usuariosController.getAll);
-routes.put('/usuarios/:id', usuariosController.update);
+routes.delete('/delete/:id', authMiddleware, usuariosController.delete);
+routes.get('/usuarios', authMiddleware, usuariosController.getAll);
+routes.put('/usuarios/:id', authMiddleware, usuariosController.update);
 
 routes.post('/register/gestor', gestorController.register);
 routes.post('/login/gestor', gestorController.login);
-routes.delete('delete/gestor/:id', gestorController.delete);
-routes.get('/gestores', gestorController.getAll);
-routes.put('/gestor/:id', gestorController.update);
+routes.delete('delete/gestor/:id', authMiddleware, gestorController.delete);
+routes.get('/gestores', authMiddleware, gestorController.getAll);
+routes.put('/gestor/:id', authMiddleware, gestorController.update);
 
-routes.post('/register/boletimOcorrencia', boletimOcorrenciaController.register)
-routes.delete('/delete/boletimOcorrencia/:id', boletimOcorrenciaController.delete);
-routes.get('/achar/boletimOcorrencia', boletimOcorrenciaController.getAll)
+routes.post('/register/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.register)
+routes.delete('/delete/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.delete);
+routes.get('/achar/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.getAll)
+routes.put('/atualizar/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.update)
 
 module.exports = { routes };
