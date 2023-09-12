@@ -9,6 +9,7 @@ class UsuariosModel extends Model {
             cpf: DataTypes.TEXT,
             rg: DataTypes.TEXT,
             estado: DataTypes.TEXT,
+            municipio: DataTypes.TEXT,
             bairro: DataTypes.TEXT,
             cep: DataTypes.INTEGER,
             dataNasc: DataTypes.DATE

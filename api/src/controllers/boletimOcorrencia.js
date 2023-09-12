@@ -40,25 +40,31 @@ class BoletimOcorrenciaController {
         }
     }
 
-    // async login(request, response) {
-    //     const httpHelper = new HttpHelper(response);
-    //     try {
-    //         const { email, password } = request.body;
-    //         if (!email || !password) return httpHelper.badRequest('E-mail e senha são obrigatórios!');
-    //         const userExists = await GestorModel.findOne({ where: { email } });
-    //         if (!userExists) return httpHelper.notFound('Usuário não encontrado!');
-    //         const isPasswordValid = await bcrypt.compare(password, userExists.password);
-    //         if (!isPasswordValid) return httpHelper.badRequest('Senha incorreta!');
-    //         const accessToken = jwt.sign(
-    //             { id: userExists.id },
-    //             process.env.TOKEN_SECRET,
-    //             { expiresIn: process.env.TOKEN_EXPIRES_IN }
-    //         );
-    //         return httpHelper.ok({ accessToken });
-    //     } catch (error) {
-    //         return httpHelper.internalError(error);
-    //     }
-    // }
+    async delete(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { id } = request.params;
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+            const usuariosExists = await BoletimOcorrenciaModel.findOne({ where: { id } });
+            if (!usuariosExists) return httpHelper.notFound('Boletim de Ocorrência não encontrado!');
+            await BoletimOcorrenciaModel.destroy({ where: { id } });
+            return httpHelper.ok({
+                message: 'Boletim de Ocorrência deletado com sucesso!'
+            })
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
+    async getAll(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const gestor = await BoletimOcorrenciaModel.findAll();
+            return httpHelper.ok(gestor);
+        } catch (error) {
+            return httpHelper.internalError(gestor);
+        }
+    }
 }
 
 module.exports = { BoletimOcorrenciaController };

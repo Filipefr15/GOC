@@ -21,10 +21,17 @@ const boletimOcorrenciaController = new BoletimOcorrenciaController();
 routes.post('/register', usuariosController.register);
 routes.post('/login', usuariosController.login);
 routes.delete('/delete/:id', usuariosController.delete);
+routes.get('/usuarios', usuariosController.getAll);
+routes.put('/usuarios/:id', usuariosController.update);
 
 routes.post('/register/gestor', gestorController.register);
 routes.post('/login/gestor', gestorController.login);
+routes.delete('delete/gestor/:id', gestorController.delete);
+routes.get('/gestores', gestorController.getAll);
+routes.put('/gestor/:id', gestorController.update);
 
 routes.post('/register/boletimOcorrencia', boletimOcorrenciaController.register)
+routes.delete('/delete/boletimOcorrencia/:id', boletimOcorrenciaController.delete);
+routes.get('/achar/boletimOcorrencia', boletimOcorrenciaController.getAll)
 
 module.exports = { routes };

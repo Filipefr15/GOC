@@ -7,13 +7,14 @@ class UsuariosController {
     async register(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const { name, password, email, cpf, rg, estado, bairro, cep, dataNasc } = request.body;
+            const { name, password, email, cpf, rg, estado, municipio, bairro, cep, dataNasc } = request.body;
             if (!name ||
                 !email ||
                 !password ||
                 !cpf ||
                 !rg ||
                 !estado ||
+                !municipio ||
                 !bairro ||
                 !cep ||
                 !dataNasc) return httpHelper.badRequest('Algo está faltando!');
@@ -30,6 +31,7 @@ class UsuariosController {
                 cpf,
                 rg,
                 estado,
+                municipio,
                 bairro,
                 cep,
                 dataNasc
@@ -82,13 +84,47 @@ class UsuariosController {
         }
     }
 
-        async getAll(request, response) {
+    async getAll(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
             const usuarios = await UsuariosModel.findAll();
             return httpHelper.ok(usuarios);
         } catch (error) {
             return httpHelper.internalError(usuarios);
+        }
+    }
+
+    async update(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { id } = request.params;
+            const { name, email, password, cpf, rg, estado, municipio, bairro, cep, dataNasc } = request.body;
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+            // if (unidadeMedida) {
+            //     const unityIsValid = Validates.validUnity(unidadeMedida);
+            //     if (!unityIsValid) return httpHelper.badRequest('Unidade de medida inválido!');
+            // }
+            const usuariosExists = await UsuariosModel.findByPk(id);
+            if (!usuariosExists) return httpHelper.notFound('Usuário não encontrado!');
+            await UsuariosModel.update({
+                name,
+                email,
+                password,
+                cpf,
+                rg,
+                estado,
+                municipio,
+                bairro,
+                cep,
+                dataNasc
+            }, {
+                where: { id }
+            });
+            return httpHelper.ok({
+                message: 'Usuário atualizado com sucesso!'
+            });
+        } catch (error) {
+            return httpHelper.internalError(error);
         }
     }
 

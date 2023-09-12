@@ -1,83 +1,47 @@
 require('../database');
 
-const { FoodModel } = require('../models/food-model');
+const { UsuariosModel } = require('../models/usuarios-model');
 
-const foods = [
+const usuario = [
     {
-        nome: 'Arroz',
-        unidadeMedida: 'Kilograma'
+        name: 'Filipe Rodrigues',
+        password: '123456789',
+        email: 'Filipe1@hotmail.com',
+        cpf: '515557017101',
+        rg: '780418911',
+        estado: 'Mato Grosso',
+        municipio: 'Cuiabá',
+        bairro: 'Paiaguás',
+        cep: '78048911',
+        dataNasc: '05/04/2000'
     },
     {
-        nome: 'Maça',
-        unidadeMedida: 'Grama'
-    },
-    {
-        nome: 'Leite',
-        unidadeMedida: 'Mililitro'
-    },
-    {
-        nome: 'Feijão',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Farinha de Trigo',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Tomate',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Banana',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Melância',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Mandioca',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Ovos',
-        unidadeMedida: 'Grama'
-    },
-    {
-        nome: 'Coca Cola',
-        unidadeMedida: 'Litro'
-    },
-    {
-        nome: 'Óleo',
-        unidadeMedida: 'Litro'
-    },
-    {
-        nome: 'Carne Moída',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Vinagre',
-        unidadeMedida: 'Mililitro'
-    },
-    {
-        nome: 'Costela',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Peito de Frango',
-        unidadeMedida: 'Kilograma'
-    },
-    {
-        nome: 'Suco',
-        unidadeMedida: 'Mililitro'
-    },
+        name: "Filipe Rodrigues Populate",
+        password: "123456789",
+        email: "Filipe2@hotmail.com",
+        cpf: "5155357017101",
+        rg: "780448911",
+        estado: "Mato Grosso",
+        municipio: "Cuiabá",
+        bairro: "Paiaguás",
+        cep: "78048911",
+        dataNasc: "05/04/2000"
+    }
 ];
 
 (async () => {
-    for (let food of foods) {
-        await FoodModel.create({
-            nome: food.nome,
-            unidadeMedida: food.unidadeMedida
+    for (let usuarios of usuario) {
+        await UsuariosModel.create({
+            name: usuarios.name,
+            password: usuarios.password,
+            email: usuarios.email,
+            cpf: usuarios.cpf,
+            rg: usuarios.rg,
+            estado: usuarios.estado,
+            municipio: usuarios.municipio,
+            bairro: usuarios.bairro,
+            cep: usuarios.cep,
+            dataNasc: usuarios.dataNasc
         });
     }
     console.log('Tudo cadastrado!');

@@ -38,6 +38,10 @@ module.exports = {
         type: Sequelize.TEXT,
         allowNull: false
       },
+      municipio: {
+        type: Sequelize.TEXT,
+        allowNull: false
+      },
       bairro: {
         type: Sequelize.TEXT,
         allowNull: false

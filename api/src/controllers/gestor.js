@@ -7,13 +7,14 @@ class GestorController {
     async register(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const { name, password, email, cpf, rg, estado, bairro, cep, dataNasc } = request.body;
+            const { name, password, email, cpf, rg, estado, municipio, bairro, cep, dataNasc } = request.body;
             if (!name ||
                 !email ||
                 !password ||
                 !cpf ||
                 !rg ||
                 !estado ||
+                !municipio ||
                 !bairro ||
                 !cep ||
                 !dataNasc) return httpHelper.badRequest('Algo está faltando!');
@@ -30,6 +31,7 @@ class GestorController {
                 cpf,
                 rg,
                 estado,
+                municipio,
                 bairro,
                 cep,
                 dataNasc
@@ -61,6 +63,66 @@ class GestorController {
                 { expiresIn: process.env.TOKEN_EXPIRES_IN }
             );
             return httpHelper.ok({ accessToken });
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
+    async delete(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { id } = request.params;
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+            const usuariosExists = await GestorModel.findOne({ where: { id } });
+            if (!usuariosExists) return httpHelper.notFound('Gestor não encontrado!');
+            await GestorModel.destroy({ where: { id } });
+            return httpHelper.ok({
+                message: 'Gestor deletado com sucesso!'
+            })
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
+    async getAll(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const gestor = await GestorModel.findAll();
+            return httpHelper.ok(gestor);
+        } catch (error) {
+            return httpHelper.internalError(gestor);
+        }
+    }
+
+    async update(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { id } = request.params;
+            const { name, email, password, cpf, rg, estado, municipio, bairro, cep, dataNasc } = request.body;
+            if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
+            // if (unidadeMedida) {
+            //     const unityIsValid = Validates.validUnity(unidadeMedida);
+            //     if (!unityIsValid) return httpHelper.badRequest('Unidade de medida inválido!');
+            // }
+            const gestorExists = await GestorModel.findByPk(id);
+            if (!gestorExists) return httpHelper.notFound('Gestor não encontrado!');
+            await GestorModel.update({
+                name,
+                email,
+                password,
+                cpf,
+                rg,
+                estado,
+                municipio,
+                bairro,
+                cep,
+                dataNasc
+            }, {
+                where: { id }
+            });
+            return httpHelper.ok({
+                message: 'Gestor atualizado com sucesso!'
+            });
         } catch (error) {
             return httpHelper.internalError(error);
         }
