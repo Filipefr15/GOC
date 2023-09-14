@@ -18,8 +18,8 @@ const boletimOcorrenciaController = new BoletimOcorrenciaController();
 // routes.delete('/food/:id', authMiddleware, foodController.delete);
 // routes.put('/food/:id', authMiddleware, foodController.update);
 
-routes.post('/register', usuariosController.register);
-routes.post('/login', usuariosController.login);
+routes.post('/register/usuarios', usuariosController.register);
+routes.post('/login/usuarios', usuariosController.login);
 routes.delete('/delete/:id', authMiddleware, usuariosController.delete);
 routes.get('/usuarios', authMiddleware, usuariosController.getAll);
 routes.put('/usuarios/:id', authMiddleware, usuariosController.update);
