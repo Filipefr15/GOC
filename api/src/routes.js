@@ -20,9 +20,9 @@ const boletimOcorrenciaController = new BoletimOcorrenciaController();
 
 routes.post('/register/usuarios', usuariosController.register);
 routes.post('/login/usuarios', usuariosController.login);
-routes.delete('/delete/:id', authMiddleware, usuariosController.delete);
-routes.get('/usuarios', authMiddleware, usuariosController.getAll);
-routes.put('/usuarios/:id', authMiddleware, usuariosController.update);
+routes.delete('/delete/usuarios/:id', authMiddleware, usuariosController.delete);
+routes.get('/all/usuarios', authMiddleware, usuariosController.getAll);
+routes.put('/update/usuarios/:id', authMiddleware, usuariosController.update);
 
 routes.post('/register/gestor', gestorController.register);
 routes.post('/login/gestor', gestorController.login);
