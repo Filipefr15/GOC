@@ -2,13 +2,12 @@ import { useState } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import imagem from '../../img';
 
 import { Input } from "../components/Input";
 import { Header } from '../components/Header';
 import { Modal } from '../components/Modal';
 
-import { loginUser } from '../services/user-services';
+import { loginUser } from '../services/usuarios-service';
 
 export function Login() {
     const { handleSubmit, register, formState: { errors } } = useForm();
