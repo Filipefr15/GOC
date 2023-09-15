@@ -1,18 +1,18 @@
 import { api } from './api'
 
-export async function registerUser(data) {
-    const result = await api.post('/register/usuarios', data);
+export async function registerGestor(data) {
+    const result = await api.post('/register/gestor', data);
     sessionStorage.setItem('token', JSON.stringify(result.data.accessToken));
 }
 
-export async function loginUser(data) {
-    const result = await api.post('/login/usuarios', data);
+export async function loginGestor(data) {
+    const result = await api.post('/login/gestor', data);
     sessionStorage.setItem('token', JSON.stringify(result.data.accessToken));
 }
 
-export async function updateUser(data) {
+export async function updateGestor(data) {
     const accessToken = sessionStorage.getItem('token');
-    const result = await api.put(`/update/usuarios/${data.id}`, {
+    const result = await api.put(`/update/gestor/${data.id}`, {
         name: data.name,
         password: data.password,
         email: data.email,
@@ -31,9 +31,9 @@ export async function updateUser(data) {
     return result;
 }
 
-export async function getUsuarios() {
+export async function getGestor() {
     const accessToken = sessionStorage.getItem('token');
-    const result = await api.get('/all/usuarios', {
+    const result = await api.get('/all/gestor', {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
         }
@@ -41,9 +41,9 @@ export async function getUsuarios() {
     return result;
 }
 
-export async function deleteUsuarios(id) {
+export async function deleteGestor(id) {
     const accessToken = sessionStorage.getItem('token');
-    const result = await api.delete(`/delete/usuarios/${id}`, {
+    const result = await api.delete(`/delete/gestor/${id}`, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
         }

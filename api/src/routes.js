@@ -27,8 +27,8 @@ routes.put('/update/usuarios/:id', authMiddleware, usuariosController.update);
 routes.post('/register/gestor', gestorController.register);
 routes.post('/login/gestor', gestorController.login);
 routes.delete('delete/gestor/:id', authMiddleware, gestorController.delete);
-routes.get('/gestores', authMiddleware, gestorController.getAll);
-routes.put('/gestor/:id', authMiddleware, gestorController.update);
+routes.get('/all/gestores', authMiddleware, gestorController.getAll);
+routes.put('/update/gestor/:id', authMiddleware, gestorController.update);
 
 routes.post('/register/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.register)
 routes.delete('/delete/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.delete);
