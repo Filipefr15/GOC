@@ -2,9 +2,10 @@ import { useState } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
+import "../styles/global.css"
+import logoMT from "../img/logoGov.png"
 
 import { Input } from "../components/Input";
-import { Header } from '../components/Header';
 import { Modal } from '../components/Modal';
 
 import { loginUser } from '../services/usuarios-service';
@@ -40,13 +41,14 @@ export function Login() {
                     noValidate
                     validated={!!errors}
                     onSubmit={handleSubmit(onSubmit)}
-                    className="bg-light rounded p-5 shadow w-50 m-auto"
+                    className="bg-light rounded-xl p-5 shadow w-40 h-70 m-auto widthFixoCard"
                 >
                     <Col>
-                        <Header 
-                        title="Entre na sua conta" />
+                        <img src={logoMT} alt="" />
+                        <h1 className="letraCardLogin">Gestão de Ocorrências Criminais</h1>
+
                         <Input
-                            className="mb-4"
+                            className="mb-3"
                             label="E-mail"
                             type="text"
                             placeholder="Insira seu e-mail"
@@ -65,7 +67,6 @@ export function Login() {
                             })}
                         />
                         <Input
-                            className="mb-4"
                             label="Senha"
                             type="password"
                             placeholder="Insira sua senha"
@@ -79,10 +80,13 @@ export function Login() {
                                 }
                             })}
                         />
-                        <div className="d-flex justify-content-between">
-                            <Button type="submit">Entrar</Button>
+                        <div className="d-flex justify-content-between mb-4">
+
                             <Link to="/register">Criar conta</Link>
+                            <Link to="/register">Esqueci a senha</Link>
                         </div>
+                        <Button type="submit" className="w-100 btn-lg">Entrar</Button>
+
                     </Col>
                 </Form>
             </div>

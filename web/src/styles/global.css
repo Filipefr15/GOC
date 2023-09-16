@@ -11,3 +11,20 @@ body {
 .selector-for-some-widget {
     box-sizing: content-box;
 }
+
+.rounded-xl {
+    border-radius: 1.1rem;
+}
+
+.widthFixoCard {
+    width: 400px;
+}
+
+.letraCardLogin {
+    font-size: 30px;
+    text-align: center;
+    padding: 0 30px;
+    line-height: 0.8;
+    font-weight: 400;
+    margin: 20px 0 20px 0;
+}
