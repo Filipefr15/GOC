@@ -1,135 +1,149 @@
-import { Container, Col, Modal, Form, Button, Row } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { useForm } from 'react-hook-form';
+import { React, useState } from 'react'
+import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill }
+    from 'react-icons/bs'
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
+    from 'recharts';
+import { Sidebar } from '../components/Sidebar';
 
-import { Food } from "../components/Food";
-import { Header } from "../components/Header";
-import { Input } from '../components/Input';
 
-import { createFood, deleteFood, getFoods, updateFood } from "../services/food-service";
+export function TelaInicial() {
 
-export function Foods() {
-    const [foods, setFoods] = useState([]);
-    const [isCreated, setIsCreated] = useState(false);
-    const { handleSubmit, register, formState: { errors } } = useForm();
-    const navigate = useNavigate();
+    const data = [
+        {
+            name: 'Page A',
+            uv: 4000,
+            pv: 2400,
+            amt: 2400,
+        },
+        {
+            name: 'Page B',
+            uv: 3000,
+            pv: 1398,
+            amt: 2210,
+        },
+        {
+            name: 'Page C',
+            uv: 2000,
+            pv: 9800,
+            amt: 2290,
+        },
+        {
+            name: 'Page D',
+            uv: 2780,
+            pv: 3908,
+            amt: 2000,
+        },
+        {
+            name: 'Page E',
+            uv: 1890,
+            pv: 4800,
+            amt: 2181,
+        },
+        {
+            name: 'Page F',
+            uv: 2390,
+            pv: 3800,
+            amt: 2500,
+        },
+        {
+            name: 'Page G',
+            uv: 3490,
+            pv: 4300,
+            amt: 2100,
+        },
+    ];
 
-    useEffect(() => {
-        findFoods();
-        // eslint-disable-next-line
-    }, []);
+    const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
-    async function findFoods() {
-        try {
-            const result = await getFoods();
-            setFoods(result.data);
-        } catch (error) {
-            console.error(error);
-            navigate('/');
-        }
-    }
-
-    async function removeFood(id) {
-        try {
-            await deleteFood(id);
-            await findFoods();
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function addFood(data) {
-        try {
-            await createFood(data);
-            setIsCreated(false);
-            await findFoods();
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    async function editFood(data) {
-        try {
-            await updateFood({
-                id: data.id,
-                nameFood: data.nameFood,
-                unity: data.unity
-            });
-            await findFoods();
-        } catch (error) {
-            console.error(error);
-        }
+    const OpenSidebar = () => {
+        setOpenSidebarToggle(!openSidebarToggle)
     }
 
     return (
-        <Container fluid>
-            <Header title="Alimentos" />
-            <Row className="w-50 m-auto mb-5 mt-5 ">
-                <Col md='10'>
-                    <Button onClick={() => setIsCreated(true)}>Criar novo alimento</Button>
-                </Col>
-                <Col>
-                    <Button variant="outline-secondary" onClick={() => {
-                        sessionStorage.removeItem('token');
-                        navigate('/');
-                    }}>Sair</Button>
-                </Col>
-            </Row>
-            <Col className="w-50 m-auto">
-                {foods && foods.length > 0
-                    ? foods.map((food, index) => (
-                        <Food
-                            key={index}
-                            food={food}
-                            removeFood={async () => await removeFood(food.id)}
-                            editFood={editFood}
-                        />
-                    ))
-                    : <p className="text-center">Não existe nenhum alimento cadastrado!</p>}
-            </Col>
-            <Modal show={isCreated} onHide={() => setIsCreated(false)}>
-                <Modal.Header>
-                    <Modal.Title>Cadastrar novo alimento</Modal.Title>
-                </Modal.Header>
-                <Form noValidate onSubmit={handleSubmit(addFood)} validated={!!errors}>
-                    <Modal.Body>
-                        <Input
-                            className="mb-3"
-                            type='text'
-                            label='Nome do alimento'
-                            placeholder='Insira o nome do alimento'
-                            required={true}
-                            name='nameFood'
-                            error={errors.nameFood}
-                            validations={register('nameFood', {
-                                required: {
-                                    value: true,
-                                    message: 'Nome do alimento é obrigatório.'
-                                }
-                            })}
-                        />
-                        <Form.Group>
-                            <Form.Label>Seleciona a unidade de medida</Form.Label>
-                            <Form.Select {...register('unity')}>
-                                <option disabled>Clique para selecionar</option>
-                                <option value={'Kilograma'}>Kilograma</option>
-                                <option value={'Grama'}>Grama</option>
-                                <option value={'Mililitro'}>Mililitro</option>
-                                <option value={'Litro'}>Litro</option>
-                            </Form.Select>
-                        </Form.Group>
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" type="submit">
-                            Criar
-                        </Button>
-                        <Button variant="secondary" onClick={() => setIsCreated(false)}>
-                            Fechar
-                        </Button>
-                    </Modal.Footer>
-                </Form>
-            </Modal>
-        </Container>
-    );
+        <main className='main-container'>
+            <Sidebar openSidebarToggle={openSidebarToggle} OpenSidebar={OpenSidebar} />
+            <div className='main-title'>
+                <h3>DASHBOARD</h3>
+            </div>
+
+            <div className='main-cards'>
+                <div className='card'>
+                    <div className='card-inner'>
+                        <h3>PRODUCTS</h3>
+                        <BsFillArchiveFill className='card_icon' />
+                    </div>
+                    <h1>300</h1>
+                </div>
+                <div className='card'>
+                    <div className='card-inner'>
+                        <h3>CATEGORIES</h3>
+                        <BsFillGrid3X3GapFill className='card_icon' />
+                    </div>
+                    <h1>12</h1>
+                </div>
+                <div className='card'>
+                    <div className='card-inner'>
+                        <h3>CUSTOMERS</h3>
+                        <BsPeopleFill className='card_icon' />
+                    </div>
+                    <h1>33</h1>
+                </div>
+                <div className='card'>
+                    <div className='card-inner'>
+                        <h3>ALERTS</h3>
+                        <BsFillBellFill className='card_icon' />
+                    </div>
+                    <h1>42</h1>
+                </div>
+            </div>
+
+            <div className='charts'>
+                <ResponsiveContainer width="100%" height="100%">
+                    <BarChart
+                        width={500}
+                        height={300}
+                        data={data}
+                        margin={{
+                            top: 5,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Bar dataKey="pv" fill="#8884d8" />
+                        <Bar dataKey="uv" fill="#82ca9d" />
+                    </BarChart>
+                </ResponsiveContainer>
+
+                <ResponsiveContainer width="100%" height="100%">
+                    <LineChart
+                        width={500}
+                        height={300}
+                        data={data}
+                        margin={{
+                            top: 5,
+                            right: 30,
+                            left: 20,
+                            bottom: 5,
+                        }}
+                    >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" />
+                        <YAxis />
+                        <Tooltip />
+                        <Legend />
+                        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
+                        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+                    </LineChart>
+                </ResponsiveContainer>
+
+            </div>
+        </main>
+    )
 }
+
