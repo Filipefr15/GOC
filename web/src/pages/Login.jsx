@@ -15,6 +15,7 @@ export function Login() {
     const [result, setResult] = useState(null);
     const navigate = useNavigate();
 
+
     const onSubmit = async (data) => {
         try {
             const user = await loginUser(data);
@@ -36,13 +37,15 @@ export function Login() {
                 message={result?.message}
                 handleClose={() => setResult(null)}
             />
-            <div class="d-flex justify-content-center align-items-center vh-100">
+            <div className="d-flex justify-content-center align-items-center vh-100">
+
                 <Form
                     noValidate
                     validated={!!errors}
                     onSubmit={handleSubmit(onSubmit)}
                     className="bg-light rounded-xl p-5 shadow w-40 h-70 m-auto widthFixoCard"
                 >
+
                     <Col>
                         <img src={logoMT} alt="" />
                         <h1 className="letraCardLogin">Gestão de Ocorrências Criminais</h1>
@@ -85,6 +88,7 @@ export function Login() {
                             <Link to="/register">Criar conta</Link>
                             <Link to="/register">Esqueci a senha</Link>
                         </div>
+
                         <Button type="submit" className="w-100 btn-lg">Entrar</Button>
 
                     </Col>
