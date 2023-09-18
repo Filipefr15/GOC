@@ -19,7 +19,7 @@ export function Register() {
         try {
             const user = await registerUser(data);
             setResult(user);
-            navigate('/foods');
+            navigate('/telainicial');
         } catch (error) {
             setResult({
                 title: 'Houve um erro no cadastro!',
@@ -46,8 +46,8 @@ export function Register() {
             >
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6">
-                            <Col>
+                        <div class="col">
+                            <Col md={6}>
                                 <Input
                                     className="mb-4"
                                     label="Nome Completo"
@@ -159,11 +159,10 @@ export function Register() {
                                         }
                                     })}
                                 />
-
                                 <Input
                                     className="mb-4"
                                     label="CEP"
-                                    type="text"
+                                    type="integer"
                                     placeholder="Insira seu cep"
                                     error={errors.cep}
                                     required={true}
@@ -179,57 +178,74 @@ export function Register() {
                                         }
                                     })}
                                 />
-                                <div class="col-md-6">
-                                    <Input
-                                        className="mb-4"
-                                        label="E-mail"
-                                        type="text"
-                                        placeholder="Insira seu e-mail"
-                                        error={errors.email}
-                                        required={true}
-                                        name="email"
-                                        validations={register('email', {
-                                            required: {
-                                                value: true,
-                                                message: 'E-mail é obrigatório'
-                                            },
-                                            pattern: {
-                                                value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i,
-                                                message: 'E-mail inválido!'
-                                            }
-                                        })}
-                                    />
 
-                                    <Input
-                                        className="mb-4"
-                                        label="Senha"
-                                        type="password"
-                                        placeholder="Insira sua senha"
-                                        error={errors.password}
-                                        required={true}
-                                        name="password"
-                                        validations={register('password', {
-                                            required: {
-                                                value: true,
-                                                message: 'Senha é obrigatório'
-                                            }
-                                        })}
-                                    />
-                                    <div className="d-flex justify-content-between">
-                                        <Button type="submit">Criar</Button>
-                                        <Link to="/">Já tenho uma conta</Link>
-                                    </div>
 
-                                </div>
 
+                            </Col>
+                            <Col md={6}>
+
+
+                                <Input
+                                    className="mb-4"
+                                    label="E-mail"
+                                    type="text"
+                                    placeholder="Insira seu e-mail"
+                                    error={errors.email}
+                                    required={true}
+                                    name="email"
+                                    validations={register('email', {
+                                        required: {
+                                            value: true,
+                                            message: 'E-mail é obrigatório'
+                                        },
+                                        pattern: {
+                                            value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i,
+                                            message: 'E-mail inválido!'
+                                        }
+                                    })}
+                                />
+
+                                <Input
+                                    className="mb-4"
+                                    label="Senha"
+                                    type="password"
+                                    placeholder="Insira sua senha"
+                                    error={errors.password}
+                                    required={true}
+                                    name="password"
+                                    validations={register('password', {
+                                        required: {
+                                            value: true,
+                                            message: 'Senha é obrigatório'
+                                        }
+                                    })}
+                                />
+                                <Input
+                                    className="mb-4"
+                                    label="Data de Nascimento"
+                                    type="date"
+                                    placeholder="Insira sua data de nascimento."
+                                    error={errors.dataNasc}
+                                    required={true}
+                                    name="dataNasc"
+                                    validations={register('dataNasc', {
+                                        required: {
+                                            value: true,
+                                            message: 'Data de nascimento é obrigatória'
+                                        }
+                                    })}
+                                />
 
                             </Col>
                         </div>
                     </div>
                 </div>
-
+                <div className="d-flex justify-content-between">
+                    <Button type="submit" className="w-100 btn-lg">Criar</Button>
+                    <Link to="/">Já tenho uma conta</Link>
+                </div>
 
             </Form>
-        </Container>
+        </Container >
     );
 }
