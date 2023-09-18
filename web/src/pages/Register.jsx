@@ -3,6 +3,7 @@ import { Button, Col, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
+import { SelectInput } from "../components/Input estado";
 import { Input } from "../components/Input";
 import { Header } from '../components/Header';
 import { Modal } from '../components/Modal';
@@ -98,45 +99,130 @@ export function Register() {
                                         message: "RG inválido!"
                                     })}
                                 />
-                                <Input
+                                <SelectInput
                                     className="mb-4"
-                                    label="E-mail"
+                                    aria-label="Default select example"
+                                    label="Estado"
                                     type="text"
-                                    placeholder="Insira seu e-mail"
-                                    error={errors.email}
+                                    placeholder="Escolha seu Estado"
+                                    error={errors.estado}
                                     required={true}
-                                    name="email"
-                                    validations={register('email', {
+                                    name="estado"
+                                    validations={register('estado', {
                                         required: {
                                             value: true,
-                                            message: 'E-mail é obrigatório'
+                                            message: 'Selecionar Estado é obrigatório'
                                         },
                                         pattern: {
-                                            value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i,
-                                            message: 'E-mail inválido!'
+                                            value: "[a-z]"
+                                        }
+                                    })}
+
+                                />
+
+                                <Input
+                                    className="mb-4"
+                                    label="Município"
+                                    type="text"
+                                    placeholder="Insira seu município"
+                                    error={errors.municipio}
+                                    required={true}
+                                    name="municipio"
+                                    validations={register('municipio', {
+                                        required: {
+                                            value: true,
+                                            message: 'Município é obrigatório'
+                                        },
+                                        pattern: {
+                                            value: "[a-z]",
+                                            message: 'Município inválido'
                                         }
                                     })}
                                 />
 
                                 <Input
                                     className="mb-4"
-                                    label="Senha"
-                                    type="password"
-                                    placeholder="Insira sua senha"
-                                    error={errors.password}
+                                    label="Bairro"
+                                    type="text"
+                                    placeholder="Insira seu bairro"
+                                    error={errors.bairro}
                                     required={true}
-                                    name="password"
-                                    validations={register('password', {
+                                    name="bairro"
+                                    validations={register('bairro', {
                                         required: {
                                             value: true,
-                                            message: 'Senha é obrigatório'
+                                            message: 'Bairro é obrigatório'
+                                        },
+                                        pattern: {
+                                            value: "[a-z]",
+                                            message: 'Bairro inválido!'
                                         }
                                     })}
                                 />
-                                <div className="d-flex justify-content-between">
-                                    <Button type="submit">Criar</Button>
-                                    <Link to="/">Já tenho uma conta</Link>
+
+                                <Input
+                                    className="mb-4"
+                                    label="CEP"
+                                    type="text"
+                                    placeholder="Insira seu cep"
+                                    error={errors.cep}
+                                    required={true}
+                                    name="cep"
+                                    validations={register('cep', {
+                                        required: {
+                                            value: true,
+                                            message: 'CEP é obrigatório'
+                                        },
+                                        pattern: {
+                                            value: /^\d{8}$/,
+                                            message: 'CEP inválido!'
+                                        }
+                                    })}
+                                />
+                                <div class="col-md-6">
+                                    <Input
+                                        className="mb-4"
+                                        label="E-mail"
+                                        type="text"
+                                        placeholder="Insira seu e-mail"
+                                        error={errors.email}
+                                        required={true}
+                                        name="email"
+                                        validations={register('email', {
+                                            required: {
+                                                value: true,
+                                                message: 'E-mail é obrigatório'
+                                            },
+                                            pattern: {
+                                                value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i,
+                                                message: 'E-mail inválido!'
+                                            }
+                                        })}
+                                    />
+
+                                    <Input
+                                        className="mb-4"
+                                        label="Senha"
+                                        type="password"
+                                        placeholder="Insira sua senha"
+                                        error={errors.password}
+                                        required={true}
+                                        name="password"
+                                        validations={register('password', {
+                                            required: {
+                                                value: true,
+                                                message: 'Senha é obrigatório'
+                                            }
+                                        })}
+                                    />
+                                    <div className="d-flex justify-content-between">
+                                        <Button type="submit">Criar</Button>
+                                        <Link to="/">Já tenho uma conta</Link>
+                                    </div>
+
                                 </div>
+
+
                             </Col>
                         </div>
                     </div>
