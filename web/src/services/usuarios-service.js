@@ -3,6 +3,7 @@ import { api } from './api'
 export async function registerUser(data) {
     const result = await api.post('/register/usuarios', data);
     sessionStorage.setItem('token', JSON.stringify(result.data.accessToken));
+    return result
 }
 
 export async function loginUser(data) {

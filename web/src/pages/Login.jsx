@@ -22,10 +22,17 @@ export function Login() {
             setResult(user);
             navigate('/telaInicial');
         } catch (error) {
-            setResult({
-                title: 'Houve um erro no login!',
-                message: error.response.data.error,
-            });
+            if (error.response) {
+                setResult({
+                    title: 'Houve um erro no login!',
+                    message: error.response.data.error
+                });
+            } else {
+                setResult({
+                    title: 'Houve um erro no login!',
+                    message: 'Erro desconhecido!'
+                });
+            }
         }
     }
 

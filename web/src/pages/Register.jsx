@@ -8,23 +8,30 @@ import { Input } from "../components/Input";
 import { Header } from '../components/Header';
 import { Modal } from '../components/Modal';
 
-import { registerUser } from "../services/register-services";
+import { registerUser } from "../services/usuarios-service";
 
 export function Register() {
     const { handleSubmit, register, formState: { errors } } = useForm();
     const [result, setResult] = useState(null);
     const navigate = useNavigate();
 
-    const onSubmit = async (data) => {
+    const onSubmitt = async (data) => {
+        console.log("teste:", data)
+        
         try {
-            const user = await registerUser(data);
-            setResult(user);
+
+            const usuarios = await registerUser(data);
+            console.log("usarios", usuarios)
+            setResult(usuarios.data);
             navigate('/telainicial');
         } catch (error) {
-            setResult({
-                title: 'Houve um erro no cadastro!',
-                message: error.response.data.error
-            });
+           
+                setResult({
+                    title: 'Houve um erro no cadastro!',
+                    message: error.response.data.error
+                });
+            
+
         }
     }
 
@@ -40,14 +47,13 @@ export function Register() {
             <Form
                 noValidate
                 validated={!!errors}
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(onSubmitt)}
                 className="bg-light rounded p-5 shadow w-100 m-auto"
-                style={{ height: '800px' }}
+                style={{ height: '700px' }}
             >
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <Col md={6}>
+                <div className="container">
+                    <div className="row">
+                            <Col sm={6}>
                                 <Input
                                     className="mb-4"
                                     label="Nome Completo"
@@ -182,7 +188,7 @@ export function Register() {
 
 
                             </Col>
-                            <Col md={6}>
+                            <Col sm={6}>
 
 
                                 <Input
@@ -237,7 +243,6 @@ export function Register() {
                                 />
 
                             </Col>
-                        </div>
                     </div>
                 </div>
                 <div className="d-flex justify-content-between">
