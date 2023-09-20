@@ -54,6 +54,10 @@ module.exports = {
       nomeMaeComunicante: {
         type: Sequelize.TEXT,
         allowNull: false
+      },
+      statusBoletim: {
+        type: Sequelize.TEXT,
+        default: "Protocolado"
       }
     });
   },

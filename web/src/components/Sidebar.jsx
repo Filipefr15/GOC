@@ -6,8 +6,19 @@ import {
     from 'react-icons/bs'
 
 import { GrUserPolice } from 'react-icons/gr';
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 export function Sidebar({ openSidebarToggle, OpenSidebar }) {
+    
+    const navigate = useNavigate();
+    const logout = () =>{
+        
+        sessionStorage.removeItem('token');
+        navigate('/');
+    }
     return (
         <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive" : ""}>
             <div className='sidebar-title'>
@@ -23,11 +34,13 @@ export function Sidebar({ openSidebarToggle, OpenSidebar }) {
                         <BsGrid1X2Fill className='icon' /> Dashboard
                     </a>
                 </li>
+                <a onClick={logout}>
                 <li className='sidebar-list-item'>
-                    <a href="">
+                    
                         <BsArrowLeftSquareFill className='icon' /> Logout
-                    </a>
+                   
                 </li>
+                </a>
                 {/* <li className='sidebar-list-item'>
                     <a href="">
                         <BsFillGrid3X3GapFill className='icon' /> Categories

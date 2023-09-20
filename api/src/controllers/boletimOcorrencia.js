@@ -31,7 +31,8 @@ class BoletimOcorrenciaController {
                 cpfComunicante,
                 rgComunicante,
                 nomeComunicante,
-                nomeMaeComunicante
+                nomeMaeComunicante,
+                statusBoletimOcorrencia
             });
             if (!boletimOcorrencia) return httpHelper.badRequest('Houve um erro ao criar usuário');
             return httpHelper.created('Boletim de Ocorrências protocolado com sucesso!');
@@ -89,7 +90,8 @@ class BoletimOcorrenciaController {
                 cpfComunicante,
                 rgComunicante,
                 nomeComunicante,
-                nomeMaeComunicante
+                nomeMaeComunicante,
+                statusBoletimOcorrencia
             }, {
                 where: { id }
             });

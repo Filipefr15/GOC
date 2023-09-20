@@ -4,6 +4,9 @@ import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill }
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
     from 'recharts';
 import { Sidebar } from '../components/Sidebar';
+import { FaPeopleRobbery } from 'react-icons/fa6'
+import { GiRobber } from 'react-icons/gi'
+import { FaSadCry } from 'react-icons/fa'
 
 
 export function TelaInicial() {
@@ -68,27 +71,27 @@ export function TelaInicial() {
                 <div className='main-title'>
                     <h3>DASHBOARD</h3>
                 </div>
-                --select bo."tipoOcorrencia" , count(1) total from "boletimOcorrencia" bo group by bo."tipoOcorrencia"
+                {/* --select bo."tipoOcorrencia" , count(1) total from "boletimOcorrencia" bo group by bo."tipoOcorrencia" */}
                 <div className='main-cards'>
                     <div className='card'>
                         <div className='card-inner'>
-                            <h3>PRODUCTS</h3>
+                            <h3>ROUBOS</h3>
 
-                            <BsFillArchiveFill className='card_icon' />
+                            <FaPeopleRobbery className='card_icon' />
                         </div>
                         <h1>300</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
-                            <h3>CATEGORIES</h3>
-                            <BsFillGrid3X3GapFill className='card_icon' />
+                            <h3>INJÚRIAS</h3>
+                            <FaSadCry className='card_icon' />
                         </div>
                         <h1>12</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
-                            <h3>CUSTOMERS</h3>
-                            <BsPeopleFill className='card_icon' />
+                            <h3>FURTOS</h3>
+                            <GiRobber className='card_icon' />
                         </div>
                         <h1>33</h1>
                     </div>
