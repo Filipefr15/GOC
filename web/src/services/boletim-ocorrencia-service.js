@@ -32,7 +32,7 @@ export async function updateBoletimOcorrencia(data) {
     return result;
 }
 
-export async function createFood(data) {
+export async function registerBoletimOcorrencia(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.post('/register/boletimOcorrencia', {
         data: data.data,

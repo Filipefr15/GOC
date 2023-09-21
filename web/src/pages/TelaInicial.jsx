@@ -1,7 +1,7 @@
 import { React, useState } from 'react'
-import { BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill, BsFillBellFill }
+import { BsFillBellFill }
     from 'react-icons/bs'
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
     from 'recharts';
 import { Sidebar } from '../components/Sidebar';
 import { FaPeopleRobbery } from 'react-icons/fa6'
@@ -13,7 +13,7 @@ export function TelaInicial() {
 
     const data = [
         {
-            name: 'Page A',
+            name: 'Roubos',
             uv: 4000,
             pv: 2400,
             amt: 2400,
@@ -25,7 +25,7 @@ export function TelaInicial() {
             amt: 2210,
         },
         {
-            name: 'Page C',
+            name: 'Injúrias',
             uv: 2000,
             pv: 9800,
             amt: 2290,
@@ -37,7 +37,7 @@ export function TelaInicial() {
             amt: 2000,
         },
         {
-            name: 'Page E',
+            name: 'Furtos',
             uv: 1890,
             pv: 4800,
             amt: 2181,
@@ -49,7 +49,7 @@ export function TelaInicial() {
             amt: 2500,
         },
         {
-            name: 'Page G',
+            name: 'Alerts',
             uv: 3490,
             pv: 4300,
             amt: 2100,

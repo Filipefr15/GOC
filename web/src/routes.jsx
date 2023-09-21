@@ -6,6 +6,7 @@ import { Foods } from "./pages/Foods";
 
 import { isAuthenticated } from './utils/is-authenticated';
 import { TelaInicial } from "./pages/TelaInicial";
+import { RegisterBoletimOcorrencia } from "./pages/BoletimOcorrencia";
 
 export function PrivateRoute({ children }) {
     if (!isAuthenticated()) {
@@ -21,6 +22,7 @@ export function Navigations() {
                 <Route index path="/" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/telaInicial" element={<TelaInicial />} />
+                <Route path="/register/boletimOcorrencia" element={<RegisterBoletimOcorrencia />} />
                 <Route
                     path="/foods"
                     element={(
