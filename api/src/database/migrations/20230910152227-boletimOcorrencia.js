@@ -57,7 +57,7 @@ module.exports = {
       },
       statusBoletim: {
         type: Sequelize.TEXT,
-        default: "Protocolado"
+        defaultValue: "Protocolado"
       }
     });
   },

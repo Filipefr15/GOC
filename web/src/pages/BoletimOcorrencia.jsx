@@ -19,6 +19,7 @@ export function RegisterBoletimOcorrencia() {
 
     const onSubmitt = async (data) => {
         try {
+            console.log(data)
             const boletimOcorrencia = await registerBoletimOcorrencia(data);
             setResult(boletimOcorrencia.data);
             navigate('/telainicial');
@@ -149,6 +150,7 @@ export function RegisterBoletimOcorrencia() {
                                         message: 'Bairro inválido!'
                                     }
                                 })}
+                                
                             />
                                 <Input
                                 className="mb-4"
@@ -168,77 +170,89 @@ export function RegisterBoletimOcorrencia() {
 
                         </Col>
                         <Col sm={6}>
-
+                        <h2>Narrativa</h2>
+                            <h3>Conte, de maneira fiel e objetiva, como aconteceu o fato</h3>
+                            <hr  ></hr>
                             <Input
                                 className="mb-4"
-                                label="CEP"
-                                type="integer"
-                                placeholder="Insira seu cep"
-                                error={errors.cep}
+                                label="Descreva como ocorreu o fato"
+                                type="textarea"
+                                placeholder="Insira os detalhes de como ocorreu o fato"
+                                error={errors.narrativaOcorrencia}
                                 required={true}
-                                name="cep"
-                                validations={register('cep', {
-                                    required: {
-                                        value: true,
-                                        message: 'CEP é obrigatório'
-                                    },
-                                    pattern: {
-                                        value: /^\d{8}$/,
-                                        message: 'CEP inválido!'
-                                    }
+                                name="narrativaOcorrencia"
+                                validations={register('narrativaOcorrencia', {
                                 })}
                             />
+                        <h2>Comunicante</h2>
+                            <h3>Informe os dados do comunicante</h3>
+                            <hr  ></hr>
                             <Input
                                 className="mb-4"
-                                label="E-mail"
+                                label="CPF do comunicante"
                                 type="text"
-                                placeholder="Insira seu e-mail"
-                                error={errors.email}
+                                placeholder="Insira seu CPF"
+                                error={errors.cpfComunicante}
                                 required={true}
-                                name="email"
-                                validations={register('email', {
+                                name="cpfComunicante"
+                                validations={register('cpfComunicante', {
                                     required: {
                                         value: true,
-                                        message: 'E-mail é obrigatório'
+                                        message: 'CPF é obrigatório'
                                     },
-                                    pattern: {
-                                        value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i,
-                                        message: 'E-mail inválido!'
-                                    }
-                                })}
-                            />
-
-                            <Input
-                                className="mb-4"
-                                label="Senha"
-                                type="password"
-                                placeholder="Insira sua senha"
-                                error={errors.password}
-                                required={true}
-                                name="password"
-                                validations={register('password', {
-                                    required: {
-                                        value: true,
-                                        message: 'Senha é obrigatório'
-                                    }
+                                        pattern: "[0-9]{11}",
+                                        message: "CPF inválido!"
+                                    
                                 })}
                             />
                             <Input
                                 className="mb-4"
-                                label="Data de Nascimento"
-                                type="date"
-                                placeholder="Insira sua data de nascimento."
-                                error={errors.dataNasc}
+                                label="RG do comunicante"
+                                type="text"
+                                placeholder="Insira apenas os números"
+                                error={errors.rgComunicante}
                                 required={true}
-                                name="dataNasc"
-                                validations={register('dataNasc', {
+                                name="rgComunicante"
+                                validations={register('rgComunicante', {
                                     required: {
                                         value: true,
-                                        message: 'Data de nascimento é obrigatória'
+                                        message: 'RG é obrigatório'
+                                    }
+                                    ,
+                                    pattern: "[0-9]{7}",
+                                    message: "RG inválido!"
+                                })}
+                            />
+                            <Input
+                                className="mb-4"
+                                label="Nome completo do comunicante"
+                                type="text"
+                                placeholder="Insira o nome completo do comunicante"
+                                error={errors.nomeComunicante}
+                                required={true}
+                                name="nomeComunicante"
+                                validations={register('nomeComunicante', {
+                                    required: {
+                                        value: true,
+                                        message: 'Nome é obrigatório'
                                     }
                                 })}
                             />
-
+                                                        <Input
+                                className="mb-4"
+                                label="Nome completo da Mãe comunicante"
+                                type="text"
+                                placeholder="Insira o nome completo da Mãe do comunicante"
+                                error={errors.nomeMaeComunicante}
+                                required={true}
+                                name="nomeMaeComunicante"
+                                validations={register('nomeMaeComunicante', {
+                                    required: {
+                                        value: true,
+                                        message: 'Nome da Mãe do comunicante é obrigatório'
+                                    }
+                                })}
+                            />
                         </Col>
                     </div>
                 </div>

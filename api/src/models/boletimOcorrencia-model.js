@@ -14,7 +14,7 @@ class BoletimOcorrenciaModel extends Model {
             rgComunicante: DataTypes.INTEGER,
             nomeComunicante: DataTypes.TEXT,
             nomeMaeComunicante: DataTypes.TEXT,
-            statusBoletimOcorrencia: DataTypes.TEXT
+            statusBoletim: DataTypes.TEXT
         }, {
             tableName: 'boletimOcorrencia',
             modelName: 'BoletimOcorrenciaModel',

@@ -7,7 +7,7 @@ class BoletimOcorrenciaController {
     async register(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante } = request.body;
+            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante, statusBoletim } = request.body;
             if (!data ||
                 !tipoOcorrencia ||
                 !estadoOcorrencia ||
@@ -32,7 +32,7 @@ class BoletimOcorrenciaController {
                 rgComunicante,
                 nomeComunicante,
                 nomeMaeComunicante,
-                statusBoletimOcorrencia
+                statusBoletim
             });
             if (!boletimOcorrencia) return httpHelper.badRequest('Houve um erro ao criar usuário');
             return httpHelper.created('Boletim de Ocorrências protocolado com sucesso!');
@@ -71,7 +71,7 @@ class BoletimOcorrenciaController {
         const httpHelper = new HttpHelper(response);
         try {
             const { id } = request.params;
-            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante } = request.body;
+            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante, statusBoletim } = request.body;
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
             // if (unidadeMedida) {
             //     const unityIsValid = Validates.validUnity(unidadeMedida);
@@ -91,7 +91,7 @@ class BoletimOcorrenciaController {
                 rgComunicante,
                 nomeComunicante,
                 nomeMaeComunicante,
-                statusBoletimOcorrencia
+                statusBoletim
             }, {
                 where: { id }
             });
