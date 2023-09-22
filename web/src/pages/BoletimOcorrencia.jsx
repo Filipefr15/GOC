@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Col, Container, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import '../styles/global.css' 
+import '../styles/global.css'
 
 import { SelectInput } from "../components/Input estado";
 import { Input } from "../components/Input";
@@ -41,7 +41,7 @@ export function RegisterBoletimOcorrencia() {
                 message={result?.message}
                 handleClose={() => setResult(null)}
             />
-           
+
             <Form
                 noValidate
                 validated={!!errors}
@@ -49,7 +49,7 @@ export function RegisterBoletimOcorrencia() {
                 className="bg-light rounded p-5 shadow w-100 m-auto mt-3 mb-3"
             >
                 <div className="container">
-                 <Header title="Registrar Boletim de Ocorrência"/>
+                    <Header title="Registrar Boletim de Ocorrência" />
                     <div className="row">
                         <Col sm={6}>
                             <h2>Dados da Ocorrência</h2>
@@ -150,9 +150,9 @@ export function RegisterBoletimOcorrencia() {
                                         message: 'Bairro inválido!'
                                     }
                                 })}
-                                
+
                             />
-                                <Input
+                            <Input
                                 className="mb-4"
                                 label="Detalhes do local da ocorrência"
                                 type="textarea"
@@ -170,7 +170,7 @@ export function RegisterBoletimOcorrencia() {
 
                         </Col>
                         <Col sm={6}>
-                        <h2>Narrativa</h2>
+                            <h2>Narrativa</h2>
                             <h3>Conte, de maneira fiel e objetiva, como aconteceu o fato</h3>
                             <hr  ></hr>
                             <Input
@@ -184,7 +184,7 @@ export function RegisterBoletimOcorrencia() {
                                 validations={register('narrativaOcorrencia', {
                                 })}
                             />
-                        <h2>Comunicante</h2>
+                            <h2>Comunicante</h2>
                             <h3>Informe os dados do comunicante</h3>
                             <hr  ></hr>
                             <Input
@@ -200,9 +200,9 @@ export function RegisterBoletimOcorrencia() {
                                         value: true,
                                         message: 'CPF é obrigatório'
                                     },
-                                        pattern: "[0-9]{11}",
-                                        message: "CPF inválido!"
-                                    
+                                    pattern: "[0-9]{11}",
+                                    message: "CPF inválido!"
+
                                 })}
                             />
                             <Input
@@ -238,7 +238,7 @@ export function RegisterBoletimOcorrencia() {
                                     }
                                 })}
                             />
-                                                        <Input
+                            <Input
                                 className="mb-4"
                                 label="Nome completo da Mãe comunicante"
                                 type="text"
@@ -259,7 +259,7 @@ export function RegisterBoletimOcorrencia() {
                 <div className="d-flex justify-content-between">
                     <Button type="submit" className="w-100 btn-lg">Criar</Button>
                 </div>
-                <Link to="/">Já tenho uma conta</Link>
+                <Link to="/telaInicial">Página inicial</Link>
 
             </Form>
         </Container >
