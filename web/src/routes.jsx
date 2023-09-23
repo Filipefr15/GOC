@@ -2,7 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
-import { Foods } from "./pages/Foods";
+import { BoletimOcorrencia } from "./pages/Foods";
 
 import { isAuthenticated } from './utils/is-authenticated';
 import { TelaInicial } from "./pages/TelaInicial";
@@ -27,7 +27,7 @@ export function Navigations() {
                     path="/foods"
                     element={(
                         <PrivateRoute>
-                            <Foods />
+                            <BoletimOcorrencia />
                         </PrivateRoute>
                     )}
                 />

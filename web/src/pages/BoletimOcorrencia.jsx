@@ -173,6 +173,7 @@ export function RegisterBoletimOcorrencia() {
                             <h2>Narrativa</h2>
                             <h3>Conte, de maneira fiel e objetiva, como aconteceu o fato</h3>
                             <hr  ></hr>
+                        
                             <Input
                                 className="mb-4"
                                 label="Descreva como ocorreu o fato"

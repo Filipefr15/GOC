@@ -54,7 +54,7 @@ export function Login() {
                 >
 
                     <Col>
-                        <img src={logoMT} alt="" />
+                        <img src={logoMT} alt="Logo do Governo de Mato Grosso" />
                         <h1 className="letraCardLogin">Gestão de Ocorrências Criminais</h1>
 
                         <Input

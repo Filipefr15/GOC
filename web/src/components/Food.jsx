@@ -4,26 +4,26 @@ import { useForm } from "react-hook-form";
 
 import { Input } from "./Input";
 
-export function Food(props) {
+export function BoletimOcorrenciaInput(props) {
     const { handleSubmit, register, formState: { errors } } = useForm();
     const [isUpdated, setIsUpdated] = useState(false);
 
-    async function editFood(data) {
-        await props.editFood({ ...data, id: props.food.id });
+    async function updateBoletimOcorrencia(data) {
+        await props.updateBoletimOcorrencia({ ...data, id: props.boletimOcorrencia.id });
         setIsUpdated(false);
     }
 
     return (
         <>
             <Card className="mb-3 p-3 bg-light">
-                <Card.Title><strong>Nome: </strong>{props.food.nome}</Card.Title>
-                <Card.Text><strong>Unidade de medida: </strong>{props.food.unidadeMedida}</Card.Text>
+                <Card.Title><strong>Data: </strong>{props.boletimOcorrencia.data}</Card.Title>
+                <Card.Text><strong>Unidade de medida: </strong>{props.boletimOcorrencia.statusBoletim}</Card.Text>
                 <Row xs="auto" className="d-flex justify-content-end">
                     <Button variant="secondary" onClick={() => setIsUpdated(true)}>Editar</Button>
                     <Button
                         variant="outline-danger"
                         className="ms-3"
-                        onClick={props.removeFood}
+                        onClick={props.deleteFood}
                     >
                         Apagar
                     </Button>
@@ -31,20 +31,20 @@ export function Food(props) {
             </Card>
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
                 <Modal.Header>
-                    <Modal.Title>Editar alimento: {props.food.nome}</Modal.Title>
+                    <Modal.Title>Editar alimento: {props.boletimOcorrencia.statusBoletim}</Modal.Title>
                 </Modal.Header>
-                <Form noValidate onSubmit={handleSubmit(editFood)} validated={!!errors}>
+                <Form noValidate onSubmit={handleSubmit(updateBoletimOcorrencia)} validated={!!errors}>
                     <Modal.Body>
                         <Input
                             className="mb-3"
                             type='text'
-                            defaultValue={props.food.nome}
+                            defaultValue={props.boletimOcorrencia.statusBoletim}
                             label='Nome do alimento'
                             placeholder='Insira o nome do alimento'
                             required={true}
-                            name='nameFood'
-                            error={errors.nameFood}
-                            validations={register('nameFood', {
+                            name='statusBoletim'
+                            error={errors.statusBoletim}
+                            validations={register('statusBoletim', {
                                 required: {
                                     value: true,
                                     message: 'Nome do alimento é obrigatório.'
@@ -53,9 +53,9 @@ export function Food(props) {
                         />
                         <Form.Group>
                             <Form.Label>Seleciona a unidade de medida</Form.Label>
-                            <Form.Select {...register('unity')} defaultValue={props.food.unidadeMedida}>
+                            <Form.Select {...register('statusBoletim')} defaultValue={props.boletimOcorrencia.statusBoletim}>
                                 <option disabled>Clique para selecionar</option>
-                                <option value={'Kilograma'}>Kilograma</option>
+                                <option value={'Kilograma'}>Nada</option>
                                 <option value={'Grama'}>Grama</option>
                                 <option value={'Mililitro'}>Mililitro</option>
                                 <option value={'Litro'}>Litro</option>
