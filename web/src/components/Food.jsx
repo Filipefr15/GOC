@@ -17,13 +17,14 @@ export function BoletimOcorrenciaInput(props) {
         <>
             <Card className="mb-3 p-3 bg-light">
                 <Card.Title><strong>Data: </strong>{props.boletimOcorrencia.data}</Card.Title>
-                <Card.Text><strong>Unidade de medida: </strong>{props.boletimOcorrencia.statusBoletim}</Card.Text>
+                <Card.Text><strong>Nome Comunicante: </strong>{props.boletimOcorrencia.nomeComunicante}</Card.Text>
+                <Card.Text><strong>Status Boletim Ocorrência: </strong>{props.boletimOcorrencia.statusBoletim}</Card.Text>
                 <Row xs="auto" className="d-flex justify-content-end">
                     <Button variant="secondary" onClick={() => setIsUpdated(true)}>Editar</Button>
                     <Button
                         variant="outline-danger"
                         className="ms-3"
-                        onClick={props.deleteFood}
+                        onClick={props.deleteBoletimOcorrencia}
                     >
                         Apagar
                     </Button>
@@ -31,15 +32,15 @@ export function BoletimOcorrenciaInput(props) {
             </Card>
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
                 <Modal.Header>
-                    <Modal.Title>Editar alimento: {props.boletimOcorrencia.statusBoletim}</Modal.Title>
+                    <Modal.Title>Editar Status Boletim: {props.boletimOcorrencia.statusBoletim}</Modal.Title>
                 </Modal.Header>
                 <Form noValidate onSubmit={handleSubmit(updateBoletimOcorrencia)} validated={!!errors}>
                     <Modal.Body>
-                        <Input
+                        {/* <Input
                             className="mb-3"
                             type='text'
                             defaultValue={props.boletimOcorrencia.statusBoletim}
-                            label='Nome do alimento'
+                            label='Status'
                             placeholder='Insira o nome do alimento'
                             required={true}
                             name='statusBoletim'
@@ -50,9 +51,9 @@ export function BoletimOcorrenciaInput(props) {
                                     message: 'Nome do alimento é obrigatório.'
                                 }
                             })}
-                        />
+                        /> */}
                         <Form.Group>
-                            <Form.Label>Seleciona a unidade de medida</Form.Label>
+                            <Form.Label>Selecione o novo status</Form.Label>
                             <Form.Select {...register('statusBoletim')} defaultValue={props.boletimOcorrencia.statusBoletim}>
                                 <option disabled>Clique para selecionar</option>
                                 <option value={'Kilograma'}>Nada</option>

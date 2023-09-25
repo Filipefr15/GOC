@@ -5,6 +5,7 @@ import {
 }
     from 'react-icons/bs'
 
+import { MdReport } from 'react-icons/md'
 import { GrUserPolice } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
 
@@ -12,10 +13,10 @@ import { useNavigate } from 'react-router-dom';
 
 
 export function Sidebar({ openSidebarToggle, OpenSidebar }) {
-    
+
     const navigate = useNavigate();
-    const logout = () =>{
-        
+    const logout = () => {
+
         sessionStorage.removeItem('token');
         navigate('/');
     }
@@ -35,11 +36,18 @@ export function Sidebar({ openSidebarToggle, OpenSidebar }) {
                     </a>
                 </li>
                 <a onClick={logout}>
-                <li className='sidebar-list-item'>
-                    
+                    <li className='sidebar-list-item'>
+
                         <BsArrowLeftSquareFill className='icon' /> Logout
-                   
-                </li>
+
+                    </li>
+                </a>
+                <a onClick={() => navigate('/crud/boletimOcorrencia')}>
+                    <li className='sidebar-list-item'>
+
+                        <MdReport className='icon' /> Boletim Ocorrência
+
+                    </li>
                 </a>
                 {/* <li className='sidebar-list-item'>
                     <a href="">

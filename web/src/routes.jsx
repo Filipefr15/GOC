@@ -24,7 +24,7 @@ export function Navigations() {
                 <Route path="/telaInicial" element={<TelaInicial />} />
                 <Route path="/register/boletimOcorrencia" element={<RegisterBoletimOcorrencia />} />
                 <Route
-                    path="/foods"
+                    path="/crud/boletimOcorrencia"
                     element={(
                         <PrivateRoute>
                             <BoletimOcorrencia />

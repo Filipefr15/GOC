@@ -22,7 +22,7 @@ export function RegisterBoletimOcorrencia() {
             console.log(data)
             const boletimOcorrencia = await registerBoletimOcorrencia(data);
             setResult(boletimOcorrencia.data);
-            navigate('/telainicial');
+            navigate('/crud/boletimOcorrencia');
         } catch (error) {
 
             setResult({
@@ -173,7 +173,7 @@ export function RegisterBoletimOcorrencia() {
                             <h2>Narrativa</h2>
                             <h3>Conte, de maneira fiel e objetiva, como aconteceu o fato</h3>
                             <hr  ></hr>
-                        
+
                             <Input
                                 className="mb-4"
                                 label="Descreva como ocorreu o fato"
@@ -260,7 +260,7 @@ export function RegisterBoletimOcorrencia() {
                 <div className="d-flex justify-content-between">
                     <Button type="submit" className="w-100 btn-lg">Criar</Button>
                 </div>
-                <Link to="/telaInicial">Página inicial</Link>
+                <Link to="/crud/boletimOcorrencia">Retornar</Link>
 
             </Form>
         </Container >
