@@ -8,7 +8,7 @@ import { Header } from "../components/Header";
 import { Input } from '../components/Input';
 
 
-import { getBoletimOCorrencia, deleteBoletimOcorrencia, registerBoletimOcorrencia, updateBoletimOcorrencia } from "../services/boletim-ocorrencia-service";
+import { getBoletimOCorrencia, deleteBoletimOcorrencia, registerBoletimOcorrencia, updateBoletimOcorrencia, updateBoletimOcorrenciaTeste } from "../services/boletim-ocorrencia-service";
 import { SelectOcorrenciaInput } from "../components/input tipo ocorrencia";
 import { SelectInput } from "../components/Input estado";
 
@@ -33,7 +33,7 @@ export function BoletimOcorrencia() {
         }
     }
 
-    async function deleteBoletimOcorrencia(id) {
+    async function deleteBoletimOcorrencia2(id) {
         try {
             await deleteBoletimOcorrencia(id);
             await findBoletimOcorrencia();
@@ -54,8 +54,8 @@ export function BoletimOcorrencia() {
 
     async function updateBoletimOcorrencia(data) {
         try {
-            await updateBoletimOcorrencia({
-                id: data.id,
+            console.log(data);
+            await updateBoletimOcorrencia(data.id, {
                 statusBoletimOcorrencia: data.statusBoletimOcorrencia
             });
             await findBoletimOcorrencia();
@@ -66,7 +66,7 @@ export function BoletimOcorrencia() {
 
     return (
         <Container fluid>
-            <Header title="Alimentos" />
+            <Header title="Boletins de Ocorrência" />
             <Row className="w-50 m-auto mb-5 mt-5 ">
                 <Col md='10'>
                     <Button onClick={() => navigate('/register/boletimOcorrencia')}>Criar novo boletim de ocorrencia</Button>
@@ -84,15 +84,15 @@ export function BoletimOcorrencia() {
                         <BoletimOcorrenciaInput
                             key={index}
                             boletimOcorrencia={boletimOcorrencia}
-                            deleteBoletimOcorrencia={async () => await deleteBoletimOcorrencia(boletimOcorrencia.id)}
-                            updateBoletimOcorrencia={updateBoletimOcorrencia}
+                            deleteBoletimOcorrencia={async () => await deleteBoletimOcorrencia2(boletimOcorrencia.id)}
+                            updateBoletimOcorrencia2={updateBoletimOcorrencia}
                         />
                     ))
-                    : <p className="text-center">Não existe nenhum alimento cadastrado!</p>}
+                    : <p className="text-center">Não existe nenhum boletim de ocorrência cadastrado!</p>}
             </Col>
             <Modal show={isCreated} onHide={() => setIsCreated(false)}>
                 <Modal.Header>
-                    <Modal.Title>Cadastrar novo alimento</Modal.Title>
+                    <Modal.Title>Cadastrar novo boletim de ocorrência</Modal.Title>
                 </Modal.Header>
                 <Form noValidate onSubmit={handleSubmit(registerBoletimOcorrencia)} validated={!!errors}>
                     <Modal.Body>

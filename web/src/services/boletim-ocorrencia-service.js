@@ -20,10 +20,10 @@ export async function deleteBoletimOcorrencia(id) {
     return result;
 }
 
-export async function updateBoletimOcorrencia(data) {
+export async function updateBoletimOcorrenciaTeste(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.put(`/atualizar/boletimOcorrencia/${data.id}`, {
-        statusBoletimOcorrencia: data.statusBoletimOcorrencia
+        statusBoletim: data.statusBoletim
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
