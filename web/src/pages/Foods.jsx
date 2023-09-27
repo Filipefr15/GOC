@@ -56,7 +56,7 @@ export function BoletimOcorrencia() {
         try {
             console.log(data);
             await updateBoletimOcorrencia({id: data.id,
-                statusBoletimOcorrencia: data.statusBoletimOcorrencia
+                statusBoletim: data.statusBoletim
             });
             await findBoletimOcorrencia();
         } catch (error) {

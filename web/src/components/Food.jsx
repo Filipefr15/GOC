@@ -7,11 +7,21 @@ import { Input } from "./Input";
 export function BoletimOcorrenciaInput(props) {
     const { handleSubmit, register, formState: { errors } } = useForm();
     const [isUpdated, setIsUpdated] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [showVisualizarModal, setShowVisualizarModal] = useState(false);
 
     async function updateBoletimOcorrencia(data) {
         await props.updateBoletimOcorrencia({ ...data, id: props.boletimOcorrencia.id });
         setIsUpdated(false);
     }
+    const handleDeleteItem = async () => {
+        // Execute a lógica de deleção aqui, por exemplo:
+        await props.deleteBoletimOcorrencia();
+        setShowDeleteModal(false); // Feche o modal após a deleção
+    }
+
+    
+
 
     return (
         <>
@@ -24,27 +34,59 @@ export function BoletimOcorrenciaInput(props) {
                     <Button
                         variant="outline-danger"
                         className="ms-3"
-                        onClick={props.deleteBoletimOcorrencia}
+                        onClick={() => setShowDeleteModal(true)}
                     >
-                        Apagar
+                        Deletar
                     </Button>
-                    
+
+
                     <Button
                         variant="outline-info"
                         className="ms-3"
-                        onClick={props.deleteBoletimOcorrencia}
+                        onClick={() => setShowVisualizarModal(true)}
                     >
-                    Visualizar
+                        Visualizar
                     </Button>
                 </Row>
             </Card>
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmar Deleção</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Tem certeza de que deseja deletar este item?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+                        Cancelar
+                    </Button>
+                    <Button variant="outline-danger" onClick={() => handleDeleteItem()}>Deletar</Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={showVisualizarModal} onHide={() => setShowVisualizarModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirmar Deleção</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Tem certeza de que deseja deletar este item?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowVisualizarModal(false)}>
+                        Cancelar
+                    </Button>
+                    <Button variant="outline-danger" onClick={() => handleDeleteItem()}>Deletar</Button>
+                </Modal.Footer>
+            </Modal>
+
+
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
                 <Modal.Header>
                     <Modal.Title>Status Boletim: {props.boletimOcorrencia.statusBoletim}</Modal.Title>
                 </Modal.Header>
                 <Form noValidate onSubmit={handleSubmit(updateBoletimOcorrencia)} validated={!!errors}>
                     <Modal.Body>
-                        {/* <Input
+                        <Input
                             className="mb-3"
                             type='text'
                             defaultValue={props.boletimOcorrencia.statusBoletim}
@@ -59,7 +101,7 @@ export function BoletimOcorrenciaInput(props) {
                                     message: 'Nome do alimento é obrigatório.'
                                 }
                             })}
-                        /> */}
+                        />
                         <Form.Group>
                             <Form.Label>Selecione o status do boletim de ocorrência</Form.Label>
                             <Form.Select {...register('statusBoletim')} defaultValue={props.boletimOcorrencia.statusBoletim}>
@@ -70,13 +112,13 @@ export function BoletimOcorrenciaInput(props) {
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="primary" type="submit" onClick={() => setIsUpdated(true)}> 
+                        <Button variant="primary" type="submit">
                             Editar
                         </Button>
                         <Button variant="secondary" onClick={() => setIsUpdated(false)}>
                             Fechar
                         </Button>
-                        
+
                     </Modal.Footer>
                 </Form>
             </Modal>

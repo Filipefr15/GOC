@@ -78,7 +78,7 @@ export function Register() {
                                         message: 'CPF é obrigatório'
                                     }
                                     ,
-                                    pattern: "[0-9]{11}",
+                                    pattern: /^[0-9]{11}$/,
                                     message: "CPF inválido!"
                                 })}
                             />

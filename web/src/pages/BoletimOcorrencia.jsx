@@ -55,6 +55,7 @@ export function RegisterBoletimOcorrencia() {
                             <h2>Dados da Ocorrência</h2>
                             <h3 className="teste">Quanto ocorreu o fato? Qual o tipo de ocorrência?</h3>
                             <hr  ></hr>
+                            
                             <Input
                                 className="mb-4"
                                 label="Data"
@@ -201,7 +202,7 @@ export function RegisterBoletimOcorrencia() {
                                         value: true,
                                         message: 'CPF é obrigatório'
                                     },
-                                    pattern: "[0-9]{11}",
+                                    pattern: /^[0-9]{11}$/,
                                     message: "CPF inválido!"
 
                                 })}
