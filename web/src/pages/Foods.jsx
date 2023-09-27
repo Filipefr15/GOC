@@ -52,10 +52,10 @@ export function BoletimOcorrencia() {
         }
     }
 
-    async function updateBoletimOcorrencia(data) {
+    async function updateBoletimOcorrencia2(data) {
         try {
             console.log(data);
-            await updateBoletimOcorrencia(data.id, {
+            await updateBoletimOcorrencia({id: data.id,
                 statusBoletimOcorrencia: data.statusBoletimOcorrencia
             });
             await findBoletimOcorrencia();
@@ -68,14 +68,14 @@ export function BoletimOcorrencia() {
         <Container fluid>
             <Header title="Boletins de Ocorrência" />
             <Row className="w-50 m-auto mb-5 mt-5 ">
-                <Col md='10'>
+                <Col md='9'>
                     <Button onClick={() => navigate('/register/boletimOcorrencia')}>Criar novo boletim de ocorrencia</Button>
                 </Col>
                 <Col>
                     <Button variant="outline-secondary" onClick={() => {
                         sessionStorage.removeItem('token');
-                        navigate('/');
-                    }}>Sair</Button>
+                        navigate('/telainicial');
+                    }}>Retornar</Button>
                 </Col>
             </Row>
             <Col className="w-50 m-auto">
@@ -85,7 +85,7 @@ export function BoletimOcorrencia() {
                             key={index}
                             boletimOcorrencia={boletimOcorrencia}
                             deleteBoletimOcorrencia={async () => await deleteBoletimOcorrencia2(boletimOcorrencia.id)}
-                            updateBoletimOcorrencia2={updateBoletimOcorrencia}
+                            updateBoletimOcorrencia={updateBoletimOcorrencia2}
                         />
                     ))
                     : <p className="text-center">Não existe nenhum boletim de ocorrência cadastrado!</p>}

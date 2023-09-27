@@ -20,7 +20,7 @@ export async function deleteBoletimOcorrencia(id) {
     return result;
 }
 
-export async function updateBoletimOcorrenciaTeste(data) {
+export async function updateBoletimOcorrencia(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.put(`/atualizar/boletimOcorrencia/${data.id}`, {
         statusBoletim: data.statusBoletim

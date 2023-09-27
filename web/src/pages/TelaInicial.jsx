@@ -10,6 +10,7 @@ import { FaSadCry } from 'react-icons/fa'
 
 
 export function TelaInicial() {
+    
 
     const data = [
         {

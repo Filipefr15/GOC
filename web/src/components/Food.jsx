@@ -9,7 +9,7 @@ export function BoletimOcorrenciaInput(props) {
     const [isUpdated, setIsUpdated] = useState(false);
 
     async function updateBoletimOcorrencia(data) {
-        await props.updateBoletimOcorrencia2({ ...data, id: props.boletimOcorrencia.id });
+        await props.updateBoletimOcorrencia({ ...data, id: props.boletimOcorrencia.id });
         setIsUpdated(false);
     }
 

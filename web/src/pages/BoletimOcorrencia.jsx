@@ -53,7 +53,7 @@ export function RegisterBoletimOcorrencia() {
                     <div className="row">
                         <Col sm={6}>
                             <h2>Dados da Ocorrência</h2>
-                            <h3>Quanto ocorreu o fato? Qual o tipo de ocorrência?</h3>
+                            <h3 className="teste">Quanto ocorreu o fato? Qual o tipo de ocorrência?</h3>
                             <hr  ></hr>
                             <Input
                                 className="mb-4"
@@ -89,7 +89,7 @@ export function RegisterBoletimOcorrencia() {
                                 })}
                             />
                             <h2>Local do fato</h2>
-                            <h3>Em que local ocorreu o fato?</h3>
+                            <h3 className="teste">Em que local ocorreu o fato?</h3>
                             <hr  ></hr>
 
                             <SelectInput
@@ -171,7 +171,7 @@ export function RegisterBoletimOcorrencia() {
                         </Col>
                         <Col sm={6}>
                             <h2>Narrativa</h2>
-                            <h3>Conte, de maneira fiel e objetiva, como aconteceu o fato</h3>
+                            <h3 className="teste">Conte, de maneira fiel e objetiva, como aconteceu o fato</h3>
                             <hr  ></hr>
 
                             <Input
@@ -186,7 +186,7 @@ export function RegisterBoletimOcorrencia() {
                                 })}
                             />
                             <h2>Comunicante</h2>
-                            <h3>Informe os dados do comunicante</h3>
+                            <h3 className="teste">Informe os dados do comunicante</h3>
                             <hr  ></hr>
                             <Input
                                 className="mb-4"
