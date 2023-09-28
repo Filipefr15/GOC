@@ -148,6 +148,34 @@ export function EditarPerfil() {
                                         </span>
                                     )}
                                 </Form.Group>
+                                <hr />
+                                <Form.Group className="mb-4">
+                                    <Form.Label className="text-dark fw-bold">
+                                        Nova senha
+                                    </Form.Label>
+                                    <Form.Control
+                                        type="password"
+                                        placeholder='Digite sua nova senha'
+                                        name="password"
+                                        {...register("password", {
+                                            required: {
+                                                value: true,
+                                                message:
+                                                    "Senha é necessário",
+                                            },
+                                            minLength: {
+                                                value: 4,
+                                                message: 'Ao minimo 4 digitos'
+                                            }
+                                        })}
+
+                                    />
+                                    {errors.senha && (
+                                        <span className="text-danger">
+                                            {errors.senha.message}
+                                        </span>
+                                    )}
+                                </Form.Group>
                                 <hr className="mb-5" />
                                 <div className="w-100 d-flex justify-content-between">
                                     <button className='' onClick={voltar}>
@@ -160,7 +188,7 @@ export function EditarPerfil() {
                                 </div>
                             </Form>
                         </div>
-                        </body>
+                    </body>
                 </div>
             </div>
         </main>

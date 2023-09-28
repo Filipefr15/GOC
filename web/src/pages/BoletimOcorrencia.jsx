@@ -158,7 +158,7 @@ export function RegisterBoletimOcorrencia() {
                             <Input
                                 className="mb-4"
                                 label="Detalhes do local da ocorrência"
-                                type="textarea"
+                                type="textarea form-control"
                                 placeholder="Insira os detalhes do local da ocorrência"
                                 error={errors.detalhesLocalOcorrencia}
                                 required={false}
@@ -166,6 +166,26 @@ export function RegisterBoletimOcorrencia() {
                                 validations={register('detalhesLocalOcorrencia', {
                                 })}
                             />
+
+                            {/* <div className="form-floating">
+                                <textarea
+                                    className="form-control"
+                                    placeholder="Leave a comment here"
+                                    id="detalhesLocalOcorrencia"
+                                    name="detalhesLocalOcorrencia"
+                                    {...register('detalhesLocalOcorrencia', {
+                                        // Coloque as regras de validação aqui, por exemplo:
+                                        required: false, // Esta regra pode ser true ou false, dependendo da sua necessidade
+                                    })}
+                                ></textarea>
+                                <label htmlFor="detalhesLocalOcorrencia">Comments</label>
+                            </div> */}
+
+                            {/* <div class="form-floating">
+                                <textarea class="form-control" required={false} placeholder="Leave a comment here" id="detalhesLocalOcorrencia" name="detalhesLocalOcorrencia"
+                                    type="text" validations={register('detalhesLocalOcorrencia')}></textarea>
+                                <label for="floatingTextarea2">Comments</label>
+                            </div> */}
 
 
 

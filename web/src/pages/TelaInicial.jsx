@@ -158,7 +158,7 @@ export function TelaInicial() {
                     </div>
                 </div>
 
-                <div style={{ backgroundColor: '#000000', width: '100%', height: '400px' }}>
+                <div style={{ backgroundColor: '#1d2634', width: '100%', height: '400px' }}>
 
 
                     <Graphic />

@@ -22,7 +22,7 @@ export function Perfil() {
     const [usuario, setUsuario] = useState([]);
 
     async function updateUsuarios(data) {
-        await updateUser({ name: data.name });
+        await updateUser({ name: data.name, email: data.email, password: data.password, cpf: data.cpf, rg: data.rg, estado: data.estado, municipio: data.municipio, bairro: data.bairro, cep: data.cep, dataNasc: data.dataNasc });
         console.log(data);
         findUsuario();
         setIsUpdated(false);
@@ -58,14 +58,209 @@ export function Perfil() {
                 <Form noValidate onSubmit={handleSubmit(updateUsuarios)} validated={!!errors}>
                     <Modal.Body>
                         <Form.Group>
-                            <Form.Label>Selecione o NOVO status do Boletim de Ocorrência</Form.Label>
-                            <Form.Select {...register('name')} defaultValue={usuario.name}>
-                                <option disabled>Clique para selecionar</option>
-                                <option value={'Em andamento...'}>Em andamento...</option>
-                                <option value={'Finalizado'}>Finalizado</option>
-                                <option value={'Em perícia'}>Em perícia</option>
-                                <option value={'URGENTE'}>URGENTE</option>
-                            </Form.Select>
+                            <Form.Label>Alterações de Perfil</Form.Label>
+                            <div>Nome</div>
+                            <Form.Control
+
+                                className="mb-3"
+                                type="text"
+                                defaultValue={usuario.name}
+                                name="name"
+                                {...register("name", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Nome é necessário",
+                                    },
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )}
+                            {/* <Form.Control
+                                className="mb-3"
+                                type="password"
+                                defaultValue={usuario.password}
+                                name="password"
+                                {...register("password", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Senha é necessário",
+                                    },
+                                    minLength: {
+                                        value: 3,
+                                        message: 'Ao minimo 3 digitos'
+                                    }
+                                })}
+
+                            /> */}
+                            <div>Email</div>
+                            <Form.Control
+                                className="mb-3"
+                                type="text"
+                                defaultValue={usuario.email}
+                                name="email"
+                                {...register("email", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Email é necessário",
+                                    },
+                                    pattern: {
+                                        value: /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+                                        message: 'Email inválido!'
+                                    }
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )}
+                            <div>CPF</div>
+                            <Form.Control
+                                className="mb-3"
+                                type="text"
+                                defaultValue={usuario.cpf}
+                                name="cpf"
+                                {...register("cpf", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "cpf é necessário",
+                                    },
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )}
+                            <div>RG</div>
+                            <Form.Control
+                                className="mb-3"
+                                type="text"
+                                defaultValue={usuario.rg}
+                                name="rg"
+                                {...register("rg", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "rg é necessário",
+                                    },
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )}
+                            <div>Estado</div>
+                            <Form.Control
+                                className="mb-3"
+                                type="text"
+                                defaultValue={usuario.estado}
+                                name="estado"
+                                {...register("estado", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Estado é necessário",
+                                    },
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )}
+                            <div>Município</div>
+                            <Form.Control
+                                className="mb-3"
+                                type="text"
+                                defaultValue={usuario.municipio}
+                                name="municipio"
+                                {...register("municipio", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Município é necessário",
+                                    },
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )}
+                            <div>Bairro</div>
+                            <Form.Control
+                                className="mb-3"
+                                type="text"
+                                defaultValue={usuario.bairro}
+                                name="bairro"
+                                {...register("bairro", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Bairro é necessário",
+                                    },
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )}
+                            <div>CEP</div>
+                            <Form.Control
+                                className="mb-3"
+                                type="text"
+                                defaultValue={usuario.cep}
+                                name="cep"
+                                {...register("cep", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "CEP é necessário",
+                                    },
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )}
+                            {/* <Form.Control
+                                className="mb-3"
+                                type="Date"
+                                defaultValue={usuario.dataNasc}
+                                name="dataNasc"
+                                {...register("dataNasc", {
+                                    required: {
+                                        value: true,
+                                        message:
+                                            "Data de Nascimento é necessária",
+                                    },
+                                })}
+
+                            />
+                            {errors.email && (
+                                <span className="text-danger">
+                                    {errors.email.message}
+                                </span>
+                            )} */}
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>

@@ -16,14 +16,14 @@ export function Graphic() {
         // Trate os dados para contar a quantidade de cada tipo de exame
         const examCount = {};
         rawData.forEach((exam) => {
-          const { tipoOcorrencia } = exam;
-          examCount[tipoOcorrencia] = (examCount[tipoOcorrencia] || 0) + 1;
+          const { bairroOcorrencia } = exam;
+          examCount[bairroOcorrencia] = (examCount[bairroOcorrencia] || 0) + 1;
         });
 
         // Transforme os dados em um formato adequado para o gráfico de pizza do Google Charts
         const chartData = [['Tipo de Exame', 'Quantidade']];
-        Object.keys(examCount).forEach((tipoOcorrencia) => {
-          chartData.push([tipoOcorrencia, examCount[tipoOcorrencia]]);
+        Object.keys(examCount).forEach((bairroOcorrencia) => {
+          chartData.push([bairroOcorrencia, examCount[bairroOcorrencia]]);
         });
 
         setExamData(chartData);
@@ -41,7 +41,7 @@ export function Graphic() {
         chartType="PieChart"
         data={examData}
         options={{
-          title: 'Quantidade de Crimes por Tipo',
+          title: 'Número de Crimes por Bairro',
         }}
         width="100%"
         height="400px"
