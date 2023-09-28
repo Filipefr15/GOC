@@ -6,9 +6,11 @@ const { GestorController } = require('./controllers/gestor');
 const { authMiddleware } = require('./middleware/auth-middleware');
 const { BoletimOcorrenciaController } = require('./controllers/boletimOcorrencia');
 
+
 const routes = Router();
 
 //const foodController = new FoodController();
+
 const usuariosController = new UsuariosController();
 const gestorController = new GestorController();
 const boletimOcorrenciaController = new BoletimOcorrenciaController();
@@ -34,5 +36,12 @@ routes.post('/register/boletimOcorrencia', authMiddleware, boletimOcorrenciaCont
 routes.delete('/delete/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.delete);
 routes.get('/achar/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.getAll)
 routes.put('/atualizar/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.update)
+
+routes.get('/contar/boletimOcorrencia/furtos', authMiddleware, boletimOcorrenciaController.countFurtos);
+routes.get('/contar/boletimOcorrencia/roubos', authMiddleware, boletimOcorrenciaController.countRoubos);
+routes.get('/contar/boletimOcorrencia/injurias', authMiddleware, boletimOcorrenciaController.countInjurias);
+
+
+
 
 module.exports = { routes };

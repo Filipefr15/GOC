@@ -49,6 +49,13 @@ export function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
                     </li>
                 </a>
+                <a onClick={() => navigate('/piechart')}>
+                    <li className='sidebar-list-item'>
+
+                        <MdReport className='icon' /> Piechart Teste
+
+                    </li>
+                </a>
                 {/* <li className='sidebar-list-item'>
                     <a href="">
                         <BsFillGrid3X3GapFill className='icon' /> Categories

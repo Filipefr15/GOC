@@ -137,6 +137,7 @@ function formatarData(data){
                                 <option disabled>Clique para selecionar</option>
                                 <option value={'Em andamento...'}>Em andamento...</option>
                                 <option value={'Finalizado'}>Finalizado</option>
+                                <option value={'Finalizado'}>Finalizado</option>
                             </Form.Select>
                         </Form.Group>
                     </Modal.Body>

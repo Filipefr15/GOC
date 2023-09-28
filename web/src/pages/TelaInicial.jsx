@@ -10,7 +10,7 @@ import { FaSadCry } from 'react-icons/fa'
 
 
 export function TelaInicial() {
-    
+
 
     const data = [
         {
@@ -94,7 +94,7 @@ export function TelaInicial() {
                             <h3>FURTOS</h3>
                             <GiRobber className='card_icon' />
                         </div>
-                        <h1>33</h1>
+                        <h1>3544</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>

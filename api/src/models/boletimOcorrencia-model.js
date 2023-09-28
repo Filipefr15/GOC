@@ -10,8 +10,8 @@ class BoletimOcorrenciaModel extends Model {
             bairroOcorrencia: DataTypes.TEXT,
             detalhesLocalOcorrencia: DataTypes.TEXT,
             narrativaOcorrencia: DataTypes.TEXT,
-            cpfComunicante: DataTypes.INTEGER,
-            rgComunicante: DataTypes.INTEGER,
+            cpfComunicante: DataTypes.TEXT,
+            rgComunicante: DataTypes.TEXT,
             nomeComunicante: DataTypes.TEXT,
             nomeMaeComunicante: DataTypes.TEXT,
             statusBoletim: DataTypes.TEXT

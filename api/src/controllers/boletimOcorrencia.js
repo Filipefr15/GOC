@@ -57,11 +57,41 @@ class BoletimOcorrenciaController {
         }
     }
 
+    async countFurtos(req, res) {
+        const httpHelper = new HttpHelper(res);
+        try {
+            const result = await BoletimOcorrenciaModel.count({ where: { tipoOcorrencia: "Furto" } });
+            return httpHelper.ok(result);
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
+    async countRoubos(req, res) {
+        const httpHelper = new HttpHelper(res);
+        try {
+            const result = await BoletimOcorrenciaModel.count({ where: { tipoOcorrencia: "Roubo" } });
+            return httpHelper.ok(result);
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
+    async countInjurias(req, res) {
+        const httpHelper = new HttpHelper(res);
+        try {
+            const result = await BoletimOcorrenciaModel.count({ where: { tipoOcorrencia: "Injuria" } });
+            return httpHelper.ok(result);
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
     async getAll(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
             const gestor = await BoletimOcorrenciaModel.findAll({
-                order: [['id', 'DESC']] // Ordenar por createdAt em ordem decrescente
+                order: [['id', 'DESC']]
             });
             return httpHelper.ok(gestor);
         } catch (error) {
