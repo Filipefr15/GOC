@@ -12,8 +12,11 @@ export async function loginUser(data) {
 }
 
 export async function updateUser(data) {
+
     const accessToken = sessionStorage.getItem('token');
-    const result = await api.put(`/update/usuarios/${data.id}`, {
+    const id = await authToken(accessToken);
+    console.log(id.data, "do service");
+    const result = await api.put(`/update/usuarios/${id.data}`, {
         name: data.name,
         password: data.password,
         email: data.email,
@@ -37,7 +40,8 @@ export async function authToken() {
     const result = await api.get(`/auth`, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
-        }});
+        }
+    });
     return result;
 };
 

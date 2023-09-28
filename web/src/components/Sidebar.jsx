@@ -32,24 +32,17 @@ export function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
             <ul className='sidebar-list'>
 
-            <a onClick={() => navigate('/perfil')}>
-            <li className='sidebar-list-item'>
-                   
-                        <CgProfile className='icon' /> Perfil  
-                </li>
+                <a onClick={() => navigate('/perfil')}>
+                    <li className='sidebar-list-item'>
+
+                        <CgProfile className='icon' /> Perfil
+                    </li>
                 </a>
 
                 <a onClick={() => navigate('/telainicial')}>
-                <li className='sidebar-list-item'>
-                    
-                        <BsGrid1X2Fill className='icon' /> Dashboard
-                    
-                </li>
-                </a>
-                <a onClick={logout}>
                     <li className='sidebar-list-item'>
 
-                        <BsArrowLeftSquareFill className='icon' /> Logout
+                        <BsGrid1X2Fill className='icon' /> Dashboard
 
                     </li>
                 </a>
@@ -60,10 +53,10 @@ export function Sidebar({ openSidebarToggle, OpenSidebar }) {
 
                     </li>
                 </a>
-                <a onClick={() => navigate('/piechart')}>
+                <a onClick={logout}>
                     <li className='sidebar-list-item'>
 
-                        <MdReport className='icon' /> Piechart Teste
+                        <BsArrowLeftSquareFill className='icon' /> Logout
 
                     </li>
                 </a>

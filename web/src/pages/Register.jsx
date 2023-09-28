@@ -32,21 +32,21 @@ export function Register() {
 
     return (
         <Container>
-            <Modal
+            {/* <Modal
                 show={result}
                 title={result?.title}
                 message={result?.message}
                 handleClose={() => setResult(null)}
-            />
-            <Header title="Registrar" />
+            /> */}
+
             <Form
                 noValidate
                 validated={!!errors}
                 onSubmit={handleSubmit(onSubmitt)}
-                className="bg-light rounded p-5 shadow w-100 m-auto "
-                style={{ height: '570px' }}
+                className="bg-light rounded p-5 shadow w-100 m-auto mt-5 "
             >
-                <div className="container">
+                <div className="container m-auto">
+                    <Header title="Registrar" />
                     <div className="row">
                         <Col sm={6}>
                             <Input

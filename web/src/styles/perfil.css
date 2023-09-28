@@ -1,30 +1,48 @@
-  .profile-container {
-            background-color: #f0f0f0;
-            color:black;
-            border-radius: 10px;
-            padding: 30px;
-            width: 80%;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left; /* Alinhe todo o conteúdo à esquerda */
-        }
+html {
+    font-size: 16px;
+    /* Defina o tamanho da fonte raiz em 16px (1rem) */
+}
 
-        .profile-item {
-            margin-bottom: 20px;
-        }
+body {
+    font-size: 1rem;
+    /* Use 1rem como tamanho de fonte padrão para o body */
+}
 
-        .profile-label {
-            font-weight: bold;
-        }
+.profile-container {
+    background-color: #f0f0f0;
+    border-radius: 1rem;
+    /* Use 1rem para o raio do border-radius */
+    padding: 2rem;
+    /* Use 2rem para o padding */
+    width: 90%;
+    max-width: 50rem;
+    /* Use 50rem para o max-width */
+    margin: 0 auto;
+    text-align: left;
+}
 
-        .profile-data {
-            float: right; /* Alinhe os dados à direita */
-        }
+.profile-item {
+    margin-bottom: 1rem;
+    /* Use 1rem para a margem inferior */
+}
 
-        /* Estilize o hr para criar linhas separadoras */
-        hr {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            border: 0;
-            border-top: 1px solid #ccc;
-        }
+.profile-label {
+    font-weight: bold;
+}
+
+.profile-data {
+    float: right;
+}
+
+hr {
+    margin-top: 1rem;
+    /* Use 1rem para a margem superior */
+    margin-bottom: 1rem;
+    /* Use 1rem para a margem inferior */
+    border: 0;
+    border-top: 1px solid #ccc;
+}
+
+.perfil-body {
+    color: black;
+}

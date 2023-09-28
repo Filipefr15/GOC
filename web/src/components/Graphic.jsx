@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
+import '../styles/graph-container.css'
 
 import { getBoletimOCorrencia } from "../services/boletim-ocorrencia-service";
 
@@ -35,7 +36,7 @@ export function Graphic() {
   }, []);
 
   return (
-    <div>
+    <div className='graph-container'>
       <Chart
         chartType="PieChart"
         data={examData}

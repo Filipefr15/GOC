@@ -31,6 +31,7 @@ export function BoletimOcorrenciaInput(props) {
                 <Card.Title><strong>Data: </strong>{formatarData(props.boletimOcorrencia.data)}</Card.Title>
                 <Card.Text><strong>Nome Comunicante: </strong>{props.boletimOcorrencia.nomeComunicante}</Card.Text>
                 <Card.Text><strong>Status Boletim Ocorrência: </strong>{props.boletimOcorrencia.statusBoletim}</Card.Text>
+                <Card.Text><strong>Tipo da Ocorrência: </strong>{props.boletimOcorrencia.tipoOcorrencia}</Card.Text>
                 <Row xs="auto" className="d-flex justify-content-end">
                     <Button variant="secondary" onClick={() => setIsUpdated(true)}>Editar</Button>
                     <Button
@@ -66,20 +67,6 @@ export function BoletimOcorrenciaInput(props) {
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={showVisualizarModal} onHide={() => setShowVisualizarModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirmar Deleção</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Tem certeza de que deseja deletar este item?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowVisualizarModal(false)}>
-                        Cancelar
-                    </Button>
-                    <Button variant="outline-danger" onClick={() => handleDeleteItem()}>Deletar</Button>
-                </Modal.Footer>
-            </Modal>
 
             <Modal show={showVisualizarModal} onHide={() => setShowVisualizarModal(false)}>
                 <Modal.Header closeButton>
@@ -137,6 +124,7 @@ export function BoletimOcorrenciaInput(props) {
                                 <option disabled>Clique para selecionar</option>
                                 <option value={'Em andamento...'}>Em andamento...</option>
                                 <option value={'Finalizado'}>Finalizado</option>
+                                <option value={'Em perícia'}>Em perícia</option>
                                 <option value={'URGENTE'}>URGENTE</option>
                             </Form.Select>
                         </Form.Group>

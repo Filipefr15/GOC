@@ -16,6 +16,8 @@ body {
     vertical-align: middle;
     line-height: 1px;
     font-size: 26px;
+    color: white !important;
+    background-color: white;
 }
 
 .icon,
@@ -229,4 +231,3 @@ body {
         display: none;
     }
 }
-

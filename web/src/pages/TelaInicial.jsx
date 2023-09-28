@@ -158,11 +158,11 @@ export function TelaInicial() {
                     </div>
                 </div>
 
-                <div className='charts'>
+                <div style={{ backgroundColor: '#000000', width: '100%', height: '400px' }}>
 
 
                     <Graphic />
-                    <ResponsiveContainer width="100%" height="100%">
+                    {/* <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                             width={500}
                             height={300}
@@ -204,7 +204,7 @@ export function TelaInicial() {
                             <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
                             <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
                         </LineChart>
-                    </ResponsiveContainer>
+                    </ResponsiveContainer> */}
 
                 </div>
             </div>

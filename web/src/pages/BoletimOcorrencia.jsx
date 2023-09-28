@@ -11,6 +11,7 @@ import { Modal } from '../components/Modal';
 
 import { registerBoletimOcorrencia } from "../services/boletim-ocorrencia-service";
 import { SelectOcorrenciaInput } from "../components/input tipo ocorrencia";
+import { SelectInputBairro } from "../components/input bairro";
 
 export function RegisterBoletimOcorrencia() {
     const { handleSubmit, register, formState: { errors } } = useForm();
@@ -55,7 +56,7 @@ export function RegisterBoletimOcorrencia() {
                             <h2>Dados da Ocorrência</h2>
                             <h3 className="teste">Quanto ocorreu o fato? Qual o tipo de ocorrência?</h3>
                             <hr  ></hr>
-                            
+
                             <Input
                                 className="mb-4"
                                 label="Data"
@@ -133,8 +134,9 @@ export function RegisterBoletimOcorrencia() {
                                     }
                                 })}
                             />
-                            <Input
+                            <SelectInputBairro
                                 className="mb-4"
+                                aria-label="Default select example"
                                 label="Bairro"
                                 type="text"
                                 placeholder="Insira o bairro da ocorrência"
