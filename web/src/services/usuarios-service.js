@@ -52,6 +52,16 @@ export async function getUsuarios() {
     return result;
 }
 
+export async function getOneUsuarios(id) {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/one/usuarios/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
 export async function deleteUsuarios(id) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.delete(`/delete/usuarios/${id}`, {

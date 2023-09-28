@@ -116,6 +116,17 @@ class UsuariosController {
         }
     }
 
+    async getOne(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { id } = request.params;
+            const usuarios = await UsuariosModel.findOne({where: {id}});
+            return httpHelper.ok(usuarios);
+        } catch (error) {
+            return httpHelper.internalError(usuarios);
+        }
+    }
+
     async update(request, response) {
         const httpHelper = new HttpHelper(response);
         try {

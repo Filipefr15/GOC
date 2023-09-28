@@ -24,6 +24,7 @@ routes.post('/register/usuarios', usuariosController.register);
 routes.post('/login/usuarios', usuariosController.login);
 routes.delete('/delete/usuarios/:id', authMiddleware, usuariosController.delete);
 routes.get('/all/usuarios', authMiddleware, usuariosController.getAll);
+routes.get('/one/usuarios/:id', authMiddleware, usuariosController.getOne);
 routes.put('/update/usuarios/:id', authMiddleware, usuariosController.update);
 routes.get('/auth', authMiddleware, usuariosController.authToken);
 

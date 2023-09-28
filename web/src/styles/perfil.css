@@ -1,0 +1,30 @@
+  .profile-container {
+            background-color: #f0f0f0;
+            color:black;
+            border-radius: 10px;
+            padding: 30px;
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left; /* Alinhe todo o conteúdo à esquerda */
+        }
+
+        .profile-item {
+            margin-bottom: 20px;
+        }
+
+        .profile-label {
+            font-weight: bold;
+        }
+
+        .profile-data {
+            float: right; /* Alinhe os dados à direita */
+        }
+
+        /* Estilize o hr para criar linhas separadoras */
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border: 0;
+            border-top: 1px solid #ccc;
+        }
