@@ -1,59 +1,99 @@
-import React, { useEffect, useState } from 'react';
-import { Pie } from 'react-chartjs-2';
+// import React, { useEffect, useState } from 'react';
+// import { Bar, CategoryScale } from 'react-chartjs-2';
 
-function PieChart() {
-  const [data, setData] = useState({ labels: [], datasets: [] });
+// import { Chart } from 'chart.js';
+// Chart.register(CategoryScale);
 
-  useEffect(() => {
-    const accessToken = sessionStorage.getItem('token');
-    // Substitua 'SeuTokenAqui' pelo seu token de acesso real
+// // Registrar a escala 'category'
+// CategoryScale.id = 'category';
+// CategoryScale.defaults = {};
 
-    // Configurar os headers da solicitação
-    const headers = new Headers({
-        'Authorization': `Bearer ${JSON.parse(accessToken)}`
 
-    });
 
-    // Configurar as opções da solicitação
-    const requestOptions = {
-      method: 'GET', // Use 'GET' para solicitações GET ou 'POST' para solicitações POST, etc.
-      headers: headers,
-    };
 
-    // Faça a solicitação ao backend para obter os dados
-    fetch('http://localhost:8080/achar/boletimOcorrencia', requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Erro na solicitação');
-        }
-        return response.json();
-      })
-      .then(dados => {
-        // Formate os dados conforme necessário para o gráfico de pizza
-        const formattedData = {
-          labels: dados.map(item => item.label),
-          datasets: [
-            {
-              data: dados.map(item => item.value),
-              backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-              hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-            },
-          ],
-        };
+// const OcorrenciaChart = () => {
+//   const [data, setData] = useState({
+//     labels: [],
+//     datasets: [
+//       {
+//         label: 'Número de Ocorrências',
+//         data: [],
+//         backgroundColor: 'rgba(75, 192, 192, 0.2)', // Cor das barras
+//         borderColor: 'rgba(75, 192, 192, 1)', // Cor da borda das barras
+//         borderWidth: 1,
+//       },
+//     ],
+//   });
 
-        setData(formattedData);
-      })
-      .catch(error => {
-        console.error(error);
-      });
-  }, []);
+//   useEffect(() => {
+//     // Simule uma chamada à sua API para obter os dados
+//     // Substitua isso com a chamada real à sua API
+//     const fetchData = async () => {
+//       try {
+//         const response = await fetch('http://localhost:8080');
+//         const jsonData = await response.json();
 
-  return (
-    <div>
-      <h2>Gráfico de Pizza</h2>
-      <Pie data={data} />
-    </div>
-  );
-}
+//         // Processar os dados para contar as ocorrências de cada tipo
+//         const tipoOcorrenciaCounts = {};
+//         jsonData.forEach((ocorrencia) => {
+//           const tipoOcorrencia = ocorrencia.tipoOcorrencia;
+//           if (tipoOcorrencia in tipoOcorrenciaCounts) {
+//             tipoOcorrenciaCounts[tipoOcorrencia] += 1;
+//           } else {
+//             tipoOcorrenciaCounts[tipoOcorrencia] = 1;
+//           }
+//         });
 
-export default PieChart;
+//         // Separar os tipos e contagens para atualizar o estado do gráfico
+//         const tipos = Object.keys(tipoOcorrenciaCounts);
+//         const contagens = Object.values(tipoOcorrenciaCounts);
+//         setData({
+//           labels: tipos,
+//           datasets: [
+//             {
+//               label: 'Número de Ocorrências',
+//               data: contagens,
+//               backgroundColor: 'rgba(75, 192, 192, 0.2)',
+//               borderColor: 'rgba(75, 192, 192, 1)',
+//               borderWidth: 1,
+//             },
+//           ],
+//         });
+//       } catch (error) {
+//         console.error('Erro ao buscar dados da API:', error);
+//       }
+//     };
+
+//     fetchData();
+//   }, []);
+
+//   const options = {
+//     scales: {
+//       x: {
+//         type: 'category', // Usar a escala 'category' para o eixo x
+//         title: {
+//           display: true,
+//           text: 'Tipo de Ocorrência',
+//         },
+//       },
+//       y: {
+//         beginAtZero: true,
+//         title: {
+//           display: true,
+//           text: 'Número de Ocorrências',
+//         },
+//       },
+//     },
+//   };
+
+//   return (
+//     <div>
+//       <h2>Gráfico de Tipos de Ocorrência</h2>
+//       <div>
+//         <Bar data={data} />
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default OcorrenciaChart;

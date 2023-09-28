@@ -21,12 +21,14 @@ export function BoletimOcorrenciaInput(props) {
     }
 
     
-
+function formatarData(data){
+    return new Date(data).toLocaleDateString('pt-BR');
+}
 
     return (
         <>
             <Card className="mb-3 p-3 bg-light">
-                <Card.Title><strong>Data: </strong>{props.boletimOcorrencia.data}</Card.Title>
+                <Card.Title><strong>Data: </strong>{formatarData(props.boletimOcorrencia.data)}</Card.Title>
                 <Card.Text><strong>Nome Comunicante: </strong>{props.boletimOcorrencia.nomeComunicante}</Card.Text>
                 <Card.Text><strong>Status Boletim Ocorrência: </strong>{props.boletimOcorrencia.statusBoletim}</Card.Text>
                 <Row xs="auto" className="d-flex justify-content-end">
@@ -49,32 +51,6 @@ export function BoletimOcorrenciaInput(props) {
                     </Button>
                 </Row>
             </Card>
-                     <Modal show={showVisualizarModal} onHide={() => setShowVisualizarModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Dados do Boletim de Ocorrência</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p><strong>Data Protocolo Boletim Ocorrência: </strong>{props.boletimOcorrencia.data}</p>
-                    <p><strong>Nome Comunicante: </strong>{props.boletimOcorrencia.nomeComunicante}</p>
-                    <p><strong>Tipo da Ocorrência: </strong>{props.boletimOcorrencia.tipoOcorrencia}</p>
-                    <p><strong>Estado da Ocorrência: </strong>{props.boletimOcorrencia.estadoOcorrencia}</p>
-                    <p><strong>Municipio da Ocorrência: </strong>{props.boletimOcorrencia.municipioOcorrencia}</p>
-                    <p><strong>Bairro da Ocorrência: </strong>{props.boletimOcorrencia.bairroOcorrencia}</p>
-                    <p><strong>Detalhes do Local da Ocorrência: </strong>{props.boletimOcorrencia.detalhesLocalOcorrencia}</p>
-                    <p><strong>Narrativa da Ocorrência: </strong>{props.boletimOcorrencia.narrativaOcorrencia}</p>
-                    <p><strong>CPF do Comunicante: </strong>{props.boletimOcorrencia.cpfComunicante}</p>
-                    <p><strong>RG do Comunicante: </strong>{props.boletimOcorrencia.rgComunicante}</p>
-                    <p><strong>Nome da Mãe do Comunicante: </strong>{props.boletimOcorrencia.nomeMaeComunicante}</p>
-                    <p><strong>Status do Boletim Ocorrência: </strong>{props.boletimOcorrencia.statusBoletim}</p>
-                    {/* Adicione aqui os outros dados do boletim de ocorrência */}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowVisualizarModal(false)}>
-                        Fechar
-                    </Button>
-                </Modal.Footer>
-            </Modal>
-            
             <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
                 <Modal.Header closeButton>
                     <Modal.Title>Confirmar Deleção</Modal.Title>
@@ -104,6 +80,33 @@ export function BoletimOcorrenciaInput(props) {
                     <Button variant="outline-danger" onClick={() => handleDeleteItem()}>Deletar</Button>
                 </Modal.Footer>
             </Modal>
+
+            <Modal show={showVisualizarModal} onHide={() => setShowVisualizarModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Dados do Boletim de Ocorrência</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p><strong>Data Protocolo Boletim Ocorrência: </strong>{formatarData(props.boletimOcorrencia.data)}</p>
+                    <p><strong>Nome Comunicante: </strong>{props.boletimOcorrencia.nomeComunicante}</p>
+                    <p><strong>Tipo da Ocorrência: </strong>{props.boletimOcorrencia.tipoOcorrencia}</p>
+                    <p><strong>Estado da Ocorrência: </strong>{props.boletimOcorrencia.estadoOcorrencia}</p>
+                    <p><strong>Municipio da Ocorrência: </strong>{props.boletimOcorrencia.municipioOcorrencia}</p>
+                    <p><strong>Bairro da Ocorrência: </strong>{props.boletimOcorrencia.bairroOcorrencia}</p>
+                    <p><strong>Detalhes do Local da Ocorrência: </strong>{props.boletimOcorrencia.detalhesLocalOcorrencia}</p>
+                    <p><strong>Narrativa da Ocorrência: </strong>{props.boletimOcorrencia.narrativaOcorrencia}</p>
+                    <p><strong>CPF do Comunicante: </strong>{props.boletimOcorrencia.cpfComunicante}</p>
+                    <p><strong>RG do Comunicante: </strong>{props.boletimOcorrencia.rgComunicante}</p>
+                    <p><strong>Nome da Mãe do Comunicante: </strong>{props.boletimOcorrencia.nomeMaeComunicante}</p>
+                    <p><strong>Status do Boletim Ocorrência: </strong>{props.boletimOcorrencia.statusBoletim}</p>
+                    {/* Adicione aqui os outros dados do boletim de ocorrência */}
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowVisualizarModal(false)}>
+                        Fechar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            
 
 
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
@@ -146,6 +149,7 @@ export function BoletimOcorrenciaInput(props) {
                         </Button>
 
                     </Modal.Footer>
+
                 </Form>
             </Modal>
         </>

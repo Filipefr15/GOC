@@ -60,7 +60,9 @@ class BoletimOcorrenciaController {
     async getAll(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const gestor = await BoletimOcorrenciaModel.findAll();
+            const gestor = await BoletimOcorrenciaModel.findAll({
+                order: [['id', 'DESC']] // Ordenar por createdAt em ordem decrescente
+            });
             return httpHelper.ok(gestor);
         } catch (error) {
             return httpHelper.internalError(gestor);
