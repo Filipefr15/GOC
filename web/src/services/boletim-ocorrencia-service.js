@@ -53,3 +53,43 @@ export async function registerBoletimOcorrencia(data) {
     });
     return result;
 }
+
+export async function countRoubos(){
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/contar/boletimOcorrencia/roubos`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function countFurtos(){
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/contar/boletimOcorrencia/furtos`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function countInjurias(){
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/contar/boletimOcorrencia/injurias`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+export async function countBoletinsUrgentes(){
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/boletimOcorrencia/urgente`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}

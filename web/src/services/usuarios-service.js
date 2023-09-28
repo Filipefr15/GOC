@@ -32,6 +32,16 @@ export async function updateUser(data) {
     return result;
 }
 
+export async function authToken() {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/auth`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }});
+    return result;
+};
+
+
 export async function getUsuarios() {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.get('/all/usuarios', {

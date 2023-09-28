@@ -8,6 +8,7 @@ import {
 import { MdReport } from 'react-icons/md'
 import { GrUserPolice } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
+import { CgProfile } from 'react-icons/cg';
 
 
 
@@ -30,11 +31,21 @@ export function Sidebar({ openSidebarToggle, OpenSidebar }) {
             </div>
 
             <ul className='sidebar-list'>
-                <li className='sidebar-list-item'>
-                    <a href="">
-                        <BsGrid1X2Fill className='icon' /> Dashboard
-                    </a>
+
+            <a onClick={() => navigate('/perfil')}>
+            <li className='sidebar-list-item'>
+                   
+                        <CgProfile className='icon' /> Perfil  
                 </li>
+                </a>
+
+                <a onClick={() => navigate('/telainicial')}>
+                <li className='sidebar-list-item'>
+                    
+                        <BsGrid1X2Fill className='icon' /> Dashboard
+                    
+                </li>
+                </a>
                 <a onClick={logout}>
                     <li className='sidebar-list-item'>
 

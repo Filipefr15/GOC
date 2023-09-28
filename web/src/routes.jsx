@@ -10,6 +10,7 @@ import { RegisterBoletimOcorrencia } from "./pages/BoletimOcorrencia";
 import PieChart from "./pages/testepage";
 import OcorrenciaChart from "./pages/testepage";
 import { Dashboard } from "./pages/Dashboard";
+import { Perfil } from "./pages/Perfil";
 
 export function PrivateRoute({ children }) {
     if (!isAuthenticated()) {
@@ -26,6 +27,7 @@ export function Navigations() {
                 <Route path="/register" element={<Register />} />
                 <Route path="/telaInicial" element={<TelaInicial />} />
                 <Route path="/pieChart" element={<Dashboard/>} />
+                <Route path="/perfil" element={<Perfil/>} />
                 <Route path="/register/boletimOcorrencia" element={<RegisterBoletimOcorrencia />} />
                 <Route
                     path="/crud/boletimOcorrencia"

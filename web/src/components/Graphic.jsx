@@ -11,7 +11,7 @@ export function Graphic() {
       try {
         const result = await getBoletimOCorrencia();
         const rawData = result.data;
-        
+
         // Trate os dados para contar a quantidade de cada tipo de exame
         const examCount = {};
         rawData.forEach((exam) => {
@@ -40,7 +40,7 @@ export function Graphic() {
         chartType="PieChart"
         data={examData}
         options={{
-          title: 'Quantidade de Exames por Tipo',
+          title: 'Quantidade de Crimes por Tipo',
         }}
         width="100%"
         height="400px"

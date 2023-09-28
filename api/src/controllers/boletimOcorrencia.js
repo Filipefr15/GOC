@@ -87,6 +87,16 @@ class BoletimOcorrenciaController {
         }
     }
 
+    async countBoletinsUrgentes(req, res) {
+        const httpHelper = new HttpHelper(res);
+        try {
+            const result = await BoletimOcorrenciaModel.count({ where: { statusBoletim: "URGENTE" } });
+            return httpHelper.ok(result);
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
     async getAll(request, response) {
         const httpHelper = new HttpHelper(response);
         try {

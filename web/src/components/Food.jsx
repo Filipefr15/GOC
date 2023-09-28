@@ -20,10 +20,10 @@ export function BoletimOcorrenciaInput(props) {
         setShowDeleteModal(false); // Feche o modal após a deleção
     }
 
-    
-function formatarData(data){
-    return new Date(data).toLocaleDateString('pt-BR');
-}
+
+    function formatarData(data) {
+        return new Date(data).toLocaleDateString('pt-BR');
+    }
 
     return (
         <>
@@ -106,7 +106,7 @@ function formatarData(data){
                     </Button>
                 </Modal.Footer>
             </Modal>
-            
+
 
 
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
@@ -119,7 +119,7 @@ function formatarData(data){
                             className="mb-3"
                             type='text'
                             defaultValue={props.boletimOcorrencia.statusBoletim}
-                            label='Nome do alimento'
+                            label='Status atual do Boletim de Ocorrência'
                             placeholder='Insira o nome do alimento'
                             required={true}
                             name='statusBoletim'
@@ -132,12 +132,12 @@ function formatarData(data){
                             })}
                         />
                         <Form.Group>
-                            <Form.Label>Selecione o status do boletim de ocorrência</Form.Label>
+                            <Form.Label>Selecione o NOVO status do Boletim de Ocorrência</Form.Label>
                             <Form.Select {...register('statusBoletim')} defaultValue={props.boletimOcorrencia.statusBoletim}>
                                 <option disabled>Clique para selecionar</option>
                                 <option value={'Em andamento...'}>Em andamento...</option>
                                 <option value={'Finalizado'}>Finalizado</option>
-                                <option value={'Finalizado'}>Finalizado</option>
+                                <option value={'URGENTE'}>URGENTE</option>
                             </Form.Select>
                         </Form.Group>
                     </Modal.Body>

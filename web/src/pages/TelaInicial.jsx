@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useEffect, useState } from 'react'
 import { BsFillBellFill }
     from 'react-icons/bs'
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line }
@@ -7,6 +7,10 @@ import { Sidebar } from '../components/Sidebar';
 import { FaPeopleRobbery } from 'react-icons/fa6'
 import { GiRobber } from 'react-icons/gi'
 import { FaSadCry } from 'react-icons/fa'
+import { countFurtos, countRoubos, countInjurias, countBoletinsUrgentes } from '../services/boletim-ocorrencia-service'
+import { Graphic } from "../components/Graphic";
+import { Cards } from "../components/Cards";
+
 
 
 export function TelaInicial() {
@@ -57,6 +61,55 @@ export function TelaInicial() {
         },
     ];
 
+    const [numFurtos, setNumFurtos] = useState(0);
+    const [numRoubos, setNumRoubos] = useState(0);
+    const [numInjurias, setNumInjurias] = useState(0);
+    const [numUrgencias, setNumUrgencias] = useState(0);
+
+    useEffect(() => {
+        contadorFurtos();
+        contadorRoubos();
+        contadorInjurias();
+        contadorUrgencias();
+    }, []);
+
+    async function contadorFurtos() {
+        try {
+            const result = await countFurtos();
+            setNumFurtos(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function contadorRoubos() {
+        try {
+            const result = await countRoubos();
+            setNumRoubos(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function contadorInjurias() {
+        try {
+            const result = await countInjurias();
+            setNumInjurias(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    async function contadorUrgencias() {
+        try {
+            const result = await countBoletinsUrgentes();
+            setNumUrgencias(result.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false)
 
     const OpenSidebar = () => {
@@ -80,32 +133,35 @@ export function TelaInicial() {
 
                             <FaPeopleRobbery className='card_icon' />
                         </div>
-                        <h1>300</h1>
+                        <h1>{numRoubos}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>INJÚRIAS</h3>
                             <FaSadCry className='card_icon' />
                         </div>
-                        <h1>12</h1>
+                        <h1>{numInjurias}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
                             <h3>FURTOS</h3>
                             <GiRobber className='card_icon' />
                         </div>
-                        <h1>3544</h1>
+                        <h1>{numFurtos}</h1>
                     </div>
                     <div className='card'>
                         <div className='card-inner'>
-                            <h3>ALERTS</h3>
+                            <h3>URGENTES</h3>
                             <BsFillBellFill className='card_icon' />
                         </div>
-                        <h1>42</h1>
+                        <h1>{numUrgencias}</h1>
                     </div>
                 </div>
 
                 <div className='charts'>
+
+
+                    <Graphic />
                     <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                             width={500}

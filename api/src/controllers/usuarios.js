@@ -48,6 +48,28 @@ class UsuariosController {
         }
     }
 
+    async authToken(request, response){
+        const httpHelper = new HttpHelper(response);
+        try {
+            const authorizationHeader = request.headers.authorization;
+
+            const token = authorizationHeader.replace('Bearer ', ''); // Remove "Bearer " do cabeçalho
+
+            const jwt = require('jsonwebtoken');
+
+            jwt.verify(token, process.env.TOKEN_SECRET, (err, decodedToken) => {
+            if (err) {
+                return httpHelper.badRequest('Token não autenticado');
+            } else {
+                return httpHelper.ok(decodedToken.id);
+            }
+            });
+
+        } catch (error) {
+            return httpHelper.internalError(error);
+        }
+    }
+
     async login(request, response) {
         const httpHelper = new HttpHelper(response);
         try {

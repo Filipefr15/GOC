@@ -55,7 +55,8 @@ export function BoletimOcorrencia() {
     async function updateBoletimOcorrencia2(data) {
         try {
             console.log(data);
-            await updateBoletimOcorrencia({id: data.id,
+            await updateBoletimOcorrencia({
+                id: data.id,
                 statusBoletim: data.statusBoletim
             });
             await findBoletimOcorrencia();
@@ -73,7 +74,6 @@ export function BoletimOcorrencia() {
                 </Col>
                 <Col>
                     <Button variant="outline-secondary" onClick={() => {
-                        sessionStorage.removeItem('token');
                         navigate('/telainicial');
                     }}>Retornar</Button>
                 </Col>

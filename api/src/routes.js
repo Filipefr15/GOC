@@ -25,6 +25,7 @@ routes.post('/login/usuarios', usuariosController.login);
 routes.delete('/delete/usuarios/:id', authMiddleware, usuariosController.delete);
 routes.get('/all/usuarios', authMiddleware, usuariosController.getAll);
 routes.put('/update/usuarios/:id', authMiddleware, usuariosController.update);
+routes.get('/auth', authMiddleware, usuariosController.authToken);
 
 routes.post('/register/gestor', gestorController.register);
 routes.post('/login/gestor', gestorController.login);
@@ -40,6 +41,9 @@ routes.put('/atualizar/boletimOcorrencia/:id', authMiddleware, boletimOcorrencia
 routes.get('/contar/boletimOcorrencia/furtos', authMiddleware, boletimOcorrenciaController.countFurtos);
 routes.get('/contar/boletimOcorrencia/roubos', authMiddleware, boletimOcorrenciaController.countRoubos);
 routes.get('/contar/boletimOcorrencia/injurias', authMiddleware, boletimOcorrenciaController.countInjurias);
+routes.get('/boletimOcorrencia/urgente', authMiddleware, boletimOcorrenciaController.countBoletinsUrgentes);
+
+
 
 
 
