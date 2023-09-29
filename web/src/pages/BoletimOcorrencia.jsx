@@ -198,7 +198,7 @@ export function RegisterBoletimOcorrencia() {
                             <hr  ></hr>
 
                             <Input
-                                className="mb-4"
+                                className="mb-2"
                                 label="Descreva como ocorreu o fato"
                                 type="textarea"
                                 placeholder="Insira os detalhes de como ocorreu o fato"
@@ -208,7 +208,11 @@ export function RegisterBoletimOcorrencia() {
                                 validations={register('narrativaOcorrencia', {
                                 })}
                             />
-                            <h2>Comunicante</h2>
+                            <br />
+                            <br />
+                            <br />
+                            <br />
+                            <h2 >Comunicante</h2>
                             <h3 className="teste">Informe os dados do comunicante</h3>
                             <hr  ></hr>
                             <Input
@@ -243,10 +247,12 @@ export function RegisterBoletimOcorrencia() {
                                         message: 'RG é obrigatório'
                                     }
                                     ,
-                                    pattern: "[0-9]{7}",
+                                    //pattern: /(^\d{1,2}).?(\d{3}).?(\d{3})-?(\d{1}|X|x$)/,
                                     message: "RG inválido!"
                                 })}
+                                
                             />
+                                                 
                             <Input
                                 className="mb-4"
                                 label="Nome completo do comunicante"

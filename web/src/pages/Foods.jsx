@@ -62,6 +62,8 @@ export function BoletimOcorrencia() {
                 statusBoletim: data.statusBoletim
             });
             await findBoletimOcorrencia();
+            alert('Boletim editado com sucesso!');
+            
         } catch (error) {
             console.error(error);
         }

@@ -13,6 +13,8 @@ export function BoletimOcorrenciaInput(props) {
     async function updateBoletimOcorrencia(data) {
         await props.updateBoletimOcorrencia({ ...data, id: props.boletimOcorrencia.id });
         setIsUpdated(false);
+   
+        
     }
     const handleDeleteItem = async () => {
         // Execute a lógica de deleção aqui, por exemplo:

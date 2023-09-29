@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react'
 import { Sidebar } from '../components/Sidebar';
 import '../styles/perfil.css'
 
+
 import { useNavigate } from "react-router-dom";
 
 import { CgProfile } from 'react-icons/cg'
@@ -39,6 +40,7 @@ export function Perfil() {
             const result = await getOneUsuarios(id.data);
             console.log(result);
             setUsuario(result.data);
+            
         } catch (error) {
             console.error(error);
         }
@@ -341,9 +343,12 @@ export function Perfil() {
                         </div>
                         <hr></hr>
                         <div className="w-100 d-flex justify-content-end">
-                            <button onClick={() => setIsUpdated(true)}>
+                        <Button variant="primary" onClick={() => setIsUpdated(true)}>
+                            Editar
+                        </Button>
+                            {/* <button onClick={() => setIsUpdated(true)}>
                                 Editar
-                            </button>
+                            </button> */}
                         </div>
                     </div>
                 </body>
