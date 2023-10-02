@@ -5,6 +5,7 @@ const { UsuariosController } = require('./controllers/usuarios');
 const { GestorController } = require('./controllers/gestor');
 const { authMiddleware } = require('./middleware/auth-middleware');
 const { BoletimOcorrenciaController } = require('./controllers/boletimOcorrencia');
+const { DelegaciaController } = require('./controllers/delegacia');
 
 
 const routes = Router();
@@ -14,6 +15,7 @@ const routes = Router();
 const usuariosController = new UsuariosController();
 const gestorController = new GestorController();
 const boletimOcorrenciaController = new BoletimOcorrenciaController();
+const delegaciaController = new DelegaciaController();
 
 // routes.post('/food', authMiddleware, foodController.create);
 // routes.get('/foods', authMiddleware, foodController.getAll);
@@ -33,6 +35,11 @@ routes.post('/login/gestor', gestorController.login);
 routes.delete('delete/gestor/:id', authMiddleware, gestorController.delete);
 routes.get('/all/gestores', authMiddleware, gestorController.getAll);
 routes.put('/update/gestor/:id', authMiddleware, gestorController.update);
+
+routes.post('/create/delegacia', delegaciaController.register);
+routes.delete('delete/delegacia/:id', authMiddleware, delegaciaController.delete);
+routes.get('/all/delegacias', authMiddleware, delegaciaController.getAll);
+routes.put('/update/delegacia/:id', authMiddleware, delegaciaController.update);
 
 routes.post('/register/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.register)
 routes.delete('/delete/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.delete);

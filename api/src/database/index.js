@@ -5,6 +5,7 @@ const configDatabase = require('./config');
 const { UsuariosModel } = require('../models/usuarios-model');
 const { GestorModel } = require('../models/gestor-model');
 const { BoletimOcorrenciaModel } = require('../models/boletimOcorrencia-model');
+const { DelegaciaModel } = require('../models/delegacia-model');
 
 const database = new Sequelize(configDatabase);
 
@@ -12,5 +13,7 @@ const database = new Sequelize(configDatabase);
 UsuariosModel.init(database);
 GestorModel.init(database);
 BoletimOcorrenciaModel.init(database);
+DelegaciaModel.init(database);
+
 
 module.exports = database;
