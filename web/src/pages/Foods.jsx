@@ -59,11 +59,12 @@ export function BoletimOcorrencia() {
             console.log(data);
             await updateBoletimOcorrencia({
                 id: data.id,
-                statusBoletim: data.statusBoletim
+                statusBoletim: data.statusBoletim,
+                idDelegacia: data.idDelegacia
             });
             await findBoletimOcorrencia();
             alert('Boletim editado com sucesso!');
-            
+
         } catch (error) {
             console.error(error);
         }

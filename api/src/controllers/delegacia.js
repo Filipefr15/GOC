@@ -45,46 +45,6 @@ class DelegaciaController {
         }
     }
 
-    // async countFurtos(req, res) {
-    //     const httpHelper = new HttpHelper(res);
-    //     try {
-    //         const result = await BoletimOcorrenciaModel.count({ where: { tipoOcorrencia: "Furto" } });
-    //         return httpHelper.ok(result);
-    //     } catch (error) {
-    //         return httpHelper.internalError(error);
-    //     }
-    // }
-
-    // async countRoubos(req, res) {
-    //     const httpHelper = new HttpHelper(res);
-    //     try {
-    //         const result = await BoletimOcorrenciaModel.count({ where: { tipoOcorrencia: "Roubo" } });
-    //         return httpHelper.ok(result);
-    //     } catch (error) {
-    //         return httpHelper.internalError(error);
-    //     }
-    // }
-
-    // async countInjurias(req, res) {
-    //     const httpHelper = new HttpHelper(res);
-    //     try {
-    //         const result = await BoletimOcorrenciaModel.count({ where: { tipoOcorrencia: "Injuria" } });
-    //         return httpHelper.ok(result);
-    //     } catch (error) {
-    //         return httpHelper.internalError(error);
-    //     }
-    // }
-
-    // async countBoletinsUrgentes(req, res) {
-    //     const httpHelper = new HttpHelper(res);
-    //     try {
-    //         const result = await BoletimOcorrenciaModel.count({ where: { statusBoletim: "URGENTE" } });
-    //         return httpHelper.ok(result);
-    //     } catch (error) {
-    //         return httpHelper.internalError(error);
-    //     }
-    // }
-
     async getAll(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
@@ -103,10 +63,6 @@ class DelegaciaController {
             const { id } = request.params;
             const { delegado, nomeDelegacia, estadoDelegacia, municipioDelegacia, bairroDelegacia } = request.body;
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
-            // if (unidadeMedida) {
-            //     const unityIsValid = Validates.validUnity(unidadeMedida);
-            //     if (!unityIsValid) return httpHelper.badRequest('Unidade de medida inválido!');
-            // }
             const delegaciaExists = await DelegaciaModel.findByPk(id);
             if (!delegaciaExists) return httpHelper.notFound('Delegacia não encontrada!');
             await DelegaciaModel.update({

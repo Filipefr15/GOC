@@ -15,5 +15,9 @@ GestorModel.init(database);
 BoletimOcorrenciaModel.init(database);
 DelegaciaModel.init(database);
 
+BoletimOcorrenciaModel.associate(database.models);
+DelegaciaModel.associate(database.models);
+
+
 
 module.exports = database;

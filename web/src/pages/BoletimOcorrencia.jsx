@@ -250,9 +250,9 @@ export function RegisterBoletimOcorrencia() {
                                     //pattern: /(^\d{1,2}).?(\d{3}).?(\d{3})-?(\d{1}|X|x$)/,
                                     message: "RG inválido!"
                                 })}
-                                
+
                             />
-                                                 
+
                             <Input
                                 className="mb-4"
                                 label="Nome completo do comunicante"

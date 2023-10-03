@@ -7,7 +7,7 @@ class BoletimOcorrenciaController {
     async register(request, response) {
         const httpHelper = new HttpHelper(response);
         try {
-            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante, statusBoletim } = request.body;
+            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante, statusBoletim, idDelegacia } = request.body;
             if (!data ||
                 !tipoOcorrencia ||
                 !estadoOcorrencia ||
@@ -18,7 +18,8 @@ class BoletimOcorrenciaController {
                 !cpfComunicante ||
                 !rgComunicante ||
                 !nomeComunicante ||
-                !nomeMaeComunicante) return httpHelper.badRequest('Algo está faltando!');
+                !nomeMaeComunicante ||
+                !idDelegacia) return httpHelper.badRequest('Algo está faltando!');
 
             const boletimOcorrencia = await BoletimOcorrenciaModel.create({
                 data,
@@ -32,7 +33,8 @@ class BoletimOcorrenciaController {
                 rgComunicante,
                 nomeComunicante,
                 nomeMaeComunicante,
-                statusBoletim
+                statusBoletim,
+                idDelegacia
             });
             if (!boletimOcorrencia) return httpHelper.badRequest('Houve um erro ao criar usuário');
             return httpHelper.created('Boletim de Ocorrências protocolado com sucesso!');
@@ -113,7 +115,7 @@ class BoletimOcorrenciaController {
         const httpHelper = new HttpHelper(response);
         try {
             const { id } = request.params;
-            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante, statusBoletim } = request.body;
+            const { data, tipoOcorrencia, estadoOcorrencia, municipioOcorrencia, bairroOcorrencia, detalhesLocalOcorrencia, narrativaOcorrencia, cpfComunicante, rgComunicante, nomeComunicante, nomeMaeComunicante, statusBoletim, idDelegacia } = request.body;
             if (!id) return httpHelper.badRequest('Parâmetros inválidos!');
             // if (unidadeMedida) {
             //     const unityIsValid = Validates.validUnity(unidadeMedida);
@@ -133,7 +135,8 @@ class BoletimOcorrenciaController {
                 rgComunicante,
                 nomeComunicante,
                 nomeMaeComunicante,
-                statusBoletim
+                statusBoletim,
+                idDelegacia
             }, {
                 where: { id }
             });

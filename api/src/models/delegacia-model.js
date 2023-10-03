@@ -15,6 +15,9 @@ class DelegaciaModel extends Model {
             sequelize: database
         });
     }
+    static associate(models) {
+        this.hasMany(models.BoletimOcorrenciaModel, { foreignKey: 'id' });
+    }
 }
 
 module.exports = { DelegaciaModel };

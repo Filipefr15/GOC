@@ -37,7 +37,7 @@ routes.get('/all/gestores', authMiddleware, gestorController.getAll);
 routes.put('/update/gestor/:id', authMiddleware, gestorController.update);
 
 routes.post('/create/delegacia', delegaciaController.register);
-routes.delete('delete/delegacia/:id', authMiddleware, delegaciaController.delete);
+routes.delete('/delete/delegacia/:id', authMiddleware, delegaciaController.delete);
 routes.get('/all/delegacias', authMiddleware, delegaciaController.getAll);
 routes.put('/update/delegacia/:id', authMiddleware, delegaciaController.update);
 

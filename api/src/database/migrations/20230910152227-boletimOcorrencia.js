@@ -58,9 +58,18 @@ module.exports = {
       statusBoletim: {
         type: Sequelize.TEXT,
         defaultValue: "Protocolado"
+      },
+      idDelegacia: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+        references: {
+          model: 'delegacia', // Substitua 'Delegacias' pelo nome real da tabela de delegacias
+          key: 'id' // Coluna na tabela 'Delegacias' que você deseja referenciar
+        },
       }
     });
   },
+
 
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('boletimOcorrencia');

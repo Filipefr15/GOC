@@ -45,7 +45,8 @@ export async function registerBoletimOcorrencia(data) {
         cpfComunicante: data.cpfComunicante,
         rgComunicante: data.rgComunicante,
         nomeComunicante: data.nomeComunicante,
-        nomeMaeComunicante: data.nomeMaeComunicante
+        nomeMaeComunicante: data.nomeMaeComunicante,
+        idDelegacia: data.idDelegacia
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`
@@ -54,7 +55,7 @@ export async function registerBoletimOcorrencia(data) {
     return result;
 }
 
-export async function countRoubos(){
+export async function countRoubos() {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.get(`/contar/boletimOcorrencia/roubos`, {
         headers: {
@@ -64,7 +65,7 @@ export async function countRoubos(){
     return result;
 }
 
-export async function countFurtos(){
+export async function countFurtos() {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.get(`/contar/boletimOcorrencia/furtos`, {
         headers: {
@@ -74,7 +75,7 @@ export async function countFurtos(){
     return result;
 }
 
-export async function countInjurias(){
+export async function countInjurias() {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.get(`/contar/boletimOcorrencia/injurias`, {
         headers: {
@@ -84,7 +85,7 @@ export async function countInjurias(){
     return result;
 }
 
-export async function countBoletinsUrgentes(){
+export async function countBoletinsUrgentes() {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.get(`/boletimOcorrencia/urgente`, {
         headers: {

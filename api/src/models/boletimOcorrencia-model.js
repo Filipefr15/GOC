@@ -14,13 +14,17 @@ class BoletimOcorrenciaModel extends Model {
             rgComunicante: DataTypes.TEXT,
             nomeComunicante: DataTypes.TEXT,
             nomeMaeComunicante: DataTypes.TEXT,
-            statusBoletim: DataTypes.TEXT
+            statusBoletim: DataTypes.TEXT,
+            idDelegacia: DataTypes.INTEGER
         }, {
             tableName: 'boletimOcorrencia',
             modelName: 'BoletimOcorrenciaModel',
             timestamps: false,
             sequelize: database
         });
+    }
+    static associate(models) {
+        this.belongsTo(models.DelegaciaModel, { foreignKey: 'idDelegacia' });
     }
 }
 
