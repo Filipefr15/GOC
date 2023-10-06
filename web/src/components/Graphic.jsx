@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Chart } from 'react-google-charts';
-import '../styles/graph-container.css'
 
 import { getBoletimOCorrencia } from "../services/boletim-ocorrencia-service";
 
@@ -42,6 +41,15 @@ export function Graphic() {
         data={examData}
         options={{
           title: 'Número de Crimes por Bairro',
+          backgroundColor: 'transparent',
+          titleTextStyle: {
+            color: 'white', // Cor do título
+            fontSize: 18, // Tamanho da fonte do título
+          },
+          legendTextStyle: {
+            color: 'white', // Cor do texto da legenda
+            fontSize: 14, // Tamanho da fonte da legenda
+          },
         }}
         width="100%"
         height="400px"
