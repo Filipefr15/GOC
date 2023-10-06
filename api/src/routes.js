@@ -10,17 +10,12 @@ const { DelegaciaController } = require('./controllers/delegacia');
 
 const routes = Router();
 
-//const foodController = new FoodController();
 
 const usuariosController = new UsuariosController();
 const gestorController = new GestorController();
 const boletimOcorrenciaController = new BoletimOcorrenciaController();
 const delegaciaController = new DelegaciaController();
 
-// routes.post('/food', authMiddleware, foodController.create);
-// routes.get('/foods', authMiddleware, foodController.getAll);
-// routes.delete('/food/:id', authMiddleware, foodController.delete);
-// routes.put('/food/:id', authMiddleware, foodController.update);
 
 routes.post('/register/usuarios', usuariosController.register);
 routes.post('/login/usuarios', usuariosController.login);
@@ -40,6 +35,7 @@ routes.post('/create/delegacia', delegaciaController.register);
 routes.delete('/delete/delegacia/:id', authMiddleware, delegaciaController.delete);
 routes.get('/all/delegacias', authMiddleware, delegaciaController.getAll);
 routes.put('/update/delegacia/:id', authMiddleware, delegaciaController.update);
+routes.get('/one/delegacia/:id', authMiddleware, delegaciaController.getOne);
 
 routes.post('/register/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.register)
 routes.delete('/delete/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.delete);

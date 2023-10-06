@@ -32,12 +32,12 @@ export function Register() {
 
     return (
         <Container>
-            {/* <Modal
+            <Modal
                 show={result}
                 title={result?.title}
                 message={result?.message}
                 handleClose={() => setResult(null)}
-            /> */}
+            />
 
             <Form
                 noValidate
@@ -78,8 +78,10 @@ export function Register() {
                                         message: 'CPF é obrigatório'
                                     }
                                     ,
-                                    pattern: /^[0-9]{11}$/,
-                                    message: "CPF inválido!"
+                                    pattern: {
+                                        value: /^[0-9]{11}$/,
+                                        message: "CPF inválido!"
+                                    }
                                 })}
                             />
                             <Input

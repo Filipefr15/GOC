@@ -18,8 +18,8 @@ class BoletimOcorrenciaController {
                 !cpfComunicante ||
                 !rgComunicante ||
                 !nomeComunicante ||
-                !nomeMaeComunicante ||
-                !idDelegacia) return httpHelper.badRequest('Algo está faltando!');
+                !nomeMaeComunicante
+            ) return httpHelper.badRequest('Algo está faltando!');
 
             const boletimOcorrencia = await BoletimOcorrenciaModel.create({
                 data,
@@ -33,8 +33,7 @@ class BoletimOcorrenciaController {
                 rgComunicante,
                 nomeComunicante,
                 nomeMaeComunicante,
-                statusBoletim,
-                idDelegacia
+                statusBoletim
             });
             if (!boletimOcorrencia) return httpHelper.badRequest('Houve um erro ao criar usuário');
             return httpHelper.created('Boletim de Ocorrências protocolado com sucesso!');

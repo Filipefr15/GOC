@@ -61,7 +61,7 @@ module.exports = {
       },
       idDelegacia: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        defaultValue: 1,
         references: {
           model: 'delegacia', // Substitua 'Delegacias' pelo nome real da tabela de delegacias
           key: 'id' // Coluna na tabela 'Delegacias' que você deseja referenciar

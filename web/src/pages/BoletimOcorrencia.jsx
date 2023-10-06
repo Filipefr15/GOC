@@ -85,9 +85,6 @@ export function RegisterBoletimOcorrencia() {
                                         value: true,
                                         message: 'Tipo da ocorrência é obrigatório'
                                     }
-                                    ,
-                                    pattern: "[0-9]{11}",
-                                    message: "CPF inválido!"
                                 })}
                             />
                             <h2>Local do fato</h2>
@@ -107,9 +104,6 @@ export function RegisterBoletimOcorrencia() {
                                     required: {
                                         value: true,
                                         message: 'Selecionar Estado é obrigatório'
-                                    },
-                                    pattern: {
-                                        value: "[a-z]"
                                     }
                                 })}
 
@@ -228,9 +222,10 @@ export function RegisterBoletimOcorrencia() {
                                         value: true,
                                         message: 'CPF é obrigatório'
                                     },
-                                    pattern: /^[0-9]{11}$/,
-                                    message: "CPF inválido!"
-
+                                    pattern: {
+                                        value: /^[0-9]{11}$/,
+                                        message: "CPF inválido!"
+                                    }
                                 })}
                             />
                             <Input

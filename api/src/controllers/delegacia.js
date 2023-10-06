@@ -57,6 +57,19 @@ class DelegaciaController {
         }
     }
 
+    async getOne(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { id } = request.params
+            const gestor = await DelegaciaModel.findOne({
+                where: { id }
+            });
+            return httpHelper.ok(gestor);
+        } catch (error) {
+            return httpHelper.internalError(gestor);
+        }
+    }
+
     async update(request, response) {
         const httpHelper = new HttpHelper(response);
         try {

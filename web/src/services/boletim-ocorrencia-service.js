@@ -45,8 +45,8 @@ export async function registerBoletimOcorrencia(data) {
         cpfComunicante: data.cpfComunicante,
         rgComunicante: data.rgComunicante,
         nomeComunicante: data.nomeComunicante,
-        nomeMaeComunicante: data.nomeMaeComunicante,
-        idDelegacia: data.idDelegacia
+        nomeMaeComunicante: data.nomeMaeComunicante
+        //       idDelegacia: data.idDelegacia
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`

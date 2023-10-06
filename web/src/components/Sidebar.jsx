@@ -9,6 +9,7 @@ import { MdReport } from 'react-icons/md'
 import { GrUserPolice } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
 import { CgProfile } from 'react-icons/cg';
+import { GiPoliceBadge } from 'react-icons/gi'
 
 
 
@@ -50,6 +51,13 @@ export function Sidebar({ openSidebarToggle, OpenSidebar }) {
                     <li className='sidebar-list-item'>
 
                         <MdReport className='icon' /> Boletim Ocorrência
+
+                    </li>
+                </a>
+                <a onClick={() => navigate('/crud/delegacia')}>
+                    <li className='sidebar-list-item'>
+
+                        <GiPoliceBadge className='icon' /> Delegacias
 
                     </li>
                 </a>

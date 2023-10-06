@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Card, Form, Modal, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
+import { getOneDelegacia } from "../services/register-delegacia-services"
 
 import { Input } from "./Input";
 
@@ -9,12 +10,23 @@ export function BoletimOcorrenciaInput(props) {
     const [isUpdated, setIsUpdated] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showVisualizarModal, setShowVisualizarModal] = useState(false);
+    const [mostrarDelegacia, setMostrarDelegacia] = useState(false);
+
+
+    useEffect(() => {
+        coletarDelegacia()
+    }, [])
+
+    async function coletarDelegacia() {
+        const result = await getOneDelegacia(props.boletimOcorrencia.idDelegacia)
+        setMostrarDelegacia(result.data.nomeDelegacia)
+    }
 
     async function updateBoletimOcorrencia(data) {
         await props.updateBoletimOcorrencia({ ...data, id: props.boletimOcorrencia.id });
         setIsUpdated(false);
-   
-        
+
+
     }
     const handleDeleteItem = async () => {
         // Execute a lógica de deleção aqui, por exemplo:
@@ -87,6 +99,7 @@ export function BoletimOcorrenciaInput(props) {
                     <p><strong>RG do Comunicante: </strong>{props.boletimOcorrencia.rgComunicante}</p>
                     <p><strong>Nome da Mãe do Comunicante: </strong>{props.boletimOcorrencia.nomeMaeComunicante}</p>
                     <p><strong>Status do Boletim Ocorrência: </strong>{props.boletimOcorrencia.statusBoletim}</p>
+                    <p><strong>Nome Delegacia: </strong>{mostrarDelegacia ? mostrarDelegacia : "Delegacia"}</p>
                     {/* Adicione aqui os outros dados do boletim de ocorrência */}
                 </Modal.Body>
                 <Modal.Footer>
