@@ -98,8 +98,10 @@ export function Register() {
                                         message: 'RG é obrigatório'
                                     }
                                     ,
-                                    pattern: "[0-9]{7}",
-                                    message: "RG inválido!"
+                                    pattern: {
+                                        value: /^[0-9]{7}$/,
+                                        message: "RG inválido!"
+                                    }
                                 })}
                             />
                             <SelectInput

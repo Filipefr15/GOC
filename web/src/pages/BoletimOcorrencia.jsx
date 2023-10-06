@@ -243,8 +243,10 @@ export function RegisterBoletimOcorrencia() {
                                         message: 'RG é obrigatório'
                                     }
                                     ,
-                                    //pattern: /(^\d{1,2}).?(\d{3}).?(\d{3})-?(\d{1}|X|x$)/,
-                                    message: "RG inválido!"
+                                    pattern: {
+                                        value: /^[0-9]{7}$/,
+                                        message: "RG inválido!"
+                                    }
                                 })}
 
                             />
