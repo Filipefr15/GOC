@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button, Card, Form, Modal, Row } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { getOneDelegacia } from "../services/register-delegacia-services"
+import { getDelegacia } from "../services/register-delegacia-services"
 
 import { Input } from "./Input";
 
@@ -11,11 +12,26 @@ export function BoletimOcorrenciaInput(props) {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showVisualizarModal, setShowVisualizarModal] = useState(false);
     const [mostrarDelegacia, setMostrarDelegacia] = useState(false);
+    const [delegacias, setDelegacias] = useState([]);
+
 
 
     useEffect(() => {
         coletarDelegacia()
     }, [])
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const response = await getDelegacia(); // Substitua getDelegacias pela função correta
+                setDelegacias(response.data); // Supondo que o resultado da API seja um array de objetos de delegacias
+            } catch (error) {
+                console.error("Erro ao buscar delegacias:", error);
+            }
+        }
+        fetchData();
+    }, []);
+
 
     async function coletarDelegacia() {
         const result = await getOneDelegacia(props.boletimOcorrencia.idDelegacia)
@@ -100,7 +116,6 @@ export function BoletimOcorrenciaInput(props) {
                     <p><strong>Nome da Mãe do Comunicante: </strong>{props.boletimOcorrencia.nomeMaeComunicante}</p>
                     <p><strong>Status do Boletim Ocorrência: </strong>{props.boletimOcorrencia.statusBoletim}</p>
                     <p><strong>Nome Delegacia: </strong>{mostrarDelegacia ? mostrarDelegacia : "Delegacia"}</p>
-                    {/* Adicione aqui os outros dados do boletim de ocorrência */}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowVisualizarModal(false)}>
@@ -129,7 +144,23 @@ export function BoletimOcorrenciaInput(props) {
                             validations={register('statusBoletim', {
                                 required: {
                                     value: true,
-                                    message: 'Nome do alimento é obrigatório.'
+                                    message: 'Status do Boletim de Ocorrência é Obrigatório.'
+                                }
+                            })}
+                        />
+                        <Input
+                            className="mb-3"
+                            type='text'
+                            defaultValue={props.boletimOcorrencia.idDelegacia}
+                            label='Status atual do Boletim de Ocorrência'
+                            placeholder='Insira o nome do alimento'
+                            required={true}
+                            name='idDelegacia'
+                            error={errors.idDelegacia}
+                            validations={register('idDelegacia', {
+                                required: {
+                                    value: true,
+                                    message: 'Status do Boletim de Ocorrência é Obrigatório.'
                                 }
                             })}
                         />
@@ -142,6 +173,19 @@ export function BoletimOcorrenciaInput(props) {
                                 <option value={'Em perícia'}>Em perícia</option>
                                 <option value={'URGENTE'}>URGENTE</option>
                             </Form.Select>
+                            <Form.Label>Selecione a Delegacia</Form.Label>
+                            <Form.Group>
+                                <Form.Label>Selecione a Delegacia</Form.Label>
+                                <Form.Select {...register('idDelegacia')} defaultValue={props.boletimOcorrencia.idDelegacia}>
+                                    <option disabled>Clique para selecionar</option>
+                                    {delegacias.map((delegacia) => (
+                                        <option key={delegacia.id} value={delegacia.id}>
+                                            {delegacia.nomeDelegacia}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
+
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>

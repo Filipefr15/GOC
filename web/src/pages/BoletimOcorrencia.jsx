@@ -12,6 +12,8 @@ import { Modal } from '../components/Modal';
 import { registerBoletimOcorrencia } from "../services/boletim-ocorrencia-service";
 import { SelectOcorrenciaInput } from "../components/input tipo ocorrencia";
 import { SelectInputBairro } from "../components/input bairro";
+import { SelectInputMT } from "../components/InputEstadoMT";
+import { SelectInputCidade } from "../components/InputMunicipiosMT";
 
 export function RegisterBoletimOcorrencia() {
     const { handleSubmit, register, formState: { errors } } = useForm();
@@ -91,7 +93,7 @@ export function RegisterBoletimOcorrencia() {
                             <h3 className="teste">Em que local ocorreu o fato?</h3>
                             <hr  ></hr>
 
-                            <SelectInput
+                            <SelectInputMT
                                 className="mb-4"
                                 aria-label="Default select example"
                                 label="Estado"
@@ -106,11 +108,13 @@ export function RegisterBoletimOcorrencia() {
                                         message: 'Selecionar Estado é obrigatório'
                                     }
                                 })}
+                                defaultValue="MT" // Defina o valor padrão como "MT"
+                            >
+                            </SelectInputMT>
 
-                            />
-
-                            <Input
+                            <SelectInputCidade
                                 className="mb-4"
+                                aria-label="Default select example"
                                 label="Município"
                                 type="text"
                                 placeholder="Insira o município da ocorrência"
@@ -121,19 +125,17 @@ export function RegisterBoletimOcorrencia() {
                                     required: {
                                         value: true,
                                         message: 'Município da ocorrência é obrigatório'
-                                    },
-                                    pattern: {
-                                        value: "[a-z]",
-                                        message: 'Município inválido'
                                     }
                                 })}
-                            />
-                            <SelectInputBairro
+                            >
+                            </SelectInputCidade>
+
+
+                            <Input
                                 className="mb-4"
-                                aria-label="Default select example"
                                 label="Bairro"
                                 type="text"
-                                placeholder="Insira o bairro da ocorrência"
+                                placeholder="Insira o Bairro da ocorrência."
                                 error={errors.bairroOcorrencia}
                                 required={true}
                                 name="bairroOcorrencia"
@@ -147,7 +149,6 @@ export function RegisterBoletimOcorrencia() {
                                         message: 'Bairro inválido!'
                                     }
                                 })}
-
                             />
                             <Input
                                 className="mb-4"
