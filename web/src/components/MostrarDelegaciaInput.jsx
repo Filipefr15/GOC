@@ -9,6 +9,7 @@ export function MostrarDelegaciaInput(props) {
     const [isUpdated, setIsUpdated] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [showVisualizarModal, setShowVisualizarModal] = useState(false);
+    const [isDelegaciaAtrelada, setIsDelegaciaAtrelada] = useState(false);
 
     async function updateDelegacia(data) {
         await props.updateDelegacia({ ...data, id: props.delegacia.id });
@@ -17,9 +18,9 @@ export function MostrarDelegaciaInput(props) {
 
     }
     const handleDeleteItem = async () => {
-        // Execute a lógica de deleção aqui, por exemplo:
+        //fazer outro useState com boletim de ocorrencia para verificar se está linkado a algum 
         await props.deleteDelegacia();
-        setShowDeleteModal(false); // Feche o modal após a deleção
+        setShowDeleteModal(false);
     }
 
 
