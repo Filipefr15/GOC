@@ -23,8 +23,8 @@ export function BoletimOcorrenciaInput(props) {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await getDelegacia(); // Substitua getDelegacias pela função correta
-                setDelegacias(response.data); // Supondo que o resultado da API seja um array de objetos de delegacias
+                const response = await getDelegacia();
+                setDelegacias(response.data);
             } catch (error) {
                 console.error("Erro ao buscar delegacias:", error);
             }

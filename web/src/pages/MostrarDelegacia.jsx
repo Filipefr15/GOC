@@ -1,4 +1,4 @@
-import { Container, Col, Modal, Form, Button, Row } from "react-bootstrap";
+import { Container, Col, Modal, Form, Button, Row, Pagination } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
@@ -15,6 +15,7 @@ import { Sidebar } from "../components/Sidebar";
 export function MostrarDelegacia() {
     const [delegacia, setDelegacia] = useState([]);
     const [isCreated, setIsCreated] = useState(false);
+    const [busca, setBusca] = useState();
     const [deletarDelegacia, setDeletarDelegacia] = useState();
     const { handleSubmit, register, formState: { errors } } = useForm();
     const navigate = useNavigate();
@@ -22,6 +23,11 @@ export function MostrarDelegacia() {
     useEffect(() => {
         findDelegacia();
     }, []);
+
+    function handleBusca(data) {
+        setBusca(data.target.value.toLowerCase())
+    }
+
 
 
     async function findDelegacia() {
@@ -72,6 +78,43 @@ export function MostrarDelegacia() {
         }
     }
 
+    const itensPorPagina = 3;
+    const [paginaAtual, setPaginaAtual] = useState(1);
+
+    let totalPaginas;
+    let boletinsExibidos;
+
+    const indiceInicio = (paginaAtual - 1) * itensPorPagina;
+    const indiceFim = paginaAtual * itensPorPagina;
+
+
+    if (delegacia && delegacia.length > 0) {
+        boletinsExibidos = delegacia?.slice(indiceInicio, indiceFim);
+        totalPaginas = Math.ceil(delegacia.length / itensPorPagina);
+    } else {
+        boletinsExibidos = 0;
+        totalPaginas = 0;
+    }
+    const handlePaginaClick = (novaPagina) => {
+        setPaginaAtual(novaPagina);
+    };
+    const renderNumerosDePagina = () => {
+        const numerosDePagina = [];
+        for (let pagina = 1; pagina <= totalPaginas; pagina++) {
+            numerosDePagina.push(
+                <Pagination.Item
+                    key={pagina}
+                    active={pagina === paginaAtual}
+                    onClick={() => handlePaginaClick(pagina)}
+                >
+                    {pagina}
+                </Pagination.Item>
+            );
+        }
+        return numerosDePagina;
+    };
+
+
     return (
         <main className='min-vh-100 main-container d-flex'>
             <div className=''>
@@ -79,19 +122,29 @@ export function MostrarDelegacia() {
             </div>
             <Container fluid>
                 <Header title="Delegacias" />
-                <Row className="w-50 m-auto mb-5 mt-5 ">
-                    <Col md='9'>
+                <Row className="w-50 m-auto mb-2 mt-5 ">
+                    <Col md='5'>
                         <Button onClick={() => navigate('/register/delegacia')}>Criar Nova Delegacia</Button>
                     </Col>
                     <Col>
-                        <Button variant="outline-secondary" onClick={() => {
-                            navigate('/telainicial');
-                        }}>Tela Inicial</Button>
+                        <input className="form-control m-auto mb-5 p-2" placeholder="Pesquisar" name="busca" onChange={handleBusca} type="text"></input>
+
                     </Col>
+
                 </Row>
                 <Col className="w-50 m-auto">
-                    {delegacia && delegacia.length > 0
-                        ? delegacia.map((delegacia, index) => (
+                    {delegacia && delegacia.length > 0 ? (
+                        busca ? (
+                            delegacia.filter((delg) => delg.nomeDelegacia.toLowerCase().includes(busca))
+                                .map((delg) => (
+                                    <MostrarDelegaciaInput
+                                        key={delg.id}
+                                        delegacia={delg}
+                                        deleteDelegacia={async () => await deleteDelegacia2(delg.id)}
+                                        updateDelegacia={updateDelegacia2}
+                                    />
+                                ))
+                        ) : boletinsExibidos.map((delegacia, index) => (
                             <MostrarDelegaciaInput
                                 key={index}
                                 delegacia={delegacia}
@@ -99,8 +152,19 @@ export function MostrarDelegacia() {
                                 updateDelegacia={updateDelegacia2}
                             />
                         ))
-                        : <p className="text-center">Não existe nenhuma delegacia cadastrada!</p>}
+                    ) : <p className="text-center">Não existe nenhuma delegacia cadastrada!</p>}
                 </Col>
+                <Pagination className="justify-content-center mt-5">
+                    <Pagination.Prev
+                        onClick={() => handlePaginaClick(paginaAtual - 1)}
+                        disabled={paginaAtual === 1}
+                    />
+                    {renderNumerosDePagina()}
+                    <Pagination.Next
+                        onClick={() => handlePaginaClick(paginaAtual + 1)}
+                        disabled={paginaAtual === totalPaginas}
+                    />
+                </Pagination>
             </Container>
         </main>
     );
