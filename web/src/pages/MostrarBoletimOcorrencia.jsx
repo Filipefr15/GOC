@@ -2,6 +2,9 @@ import { Container, Col, Modal, Form, Button, Row, Pagination } from "react-boot
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import { BoletimOcorrenciaInput } from "../components/BoletimOcorrenciaInput";
 import { Header } from "../components/Header";
@@ -30,7 +33,7 @@ export function BoletimOcorrencia() {
 
     useEffect(() => {
         findBoletimOcorrencia();
-    }, []);
+    }, [boletimOcorrencia], []);
 
     async function findBoletimOcorrencia() {
         try {
@@ -46,6 +49,7 @@ export function BoletimOcorrencia() {
         try {
             await deleteBoletimOcorrencia(id);
             await findBoletimOcorrencia();
+            toast.success('Boletim deletado com sucesso!');
         } catch (error) {
             console.error(error);
         }
@@ -69,8 +73,9 @@ export function BoletimOcorrencia() {
                 statusBoletim: data.statusBoletim,
                 idDelegacia: data.idDelegacia
             });
+
             await findBoletimOcorrencia();
-            alert('Boletim editado com sucesso!');
+            toast.success('Boletim editado com sucesso!');
 
         } catch (error) {
             console.error(error);
@@ -114,6 +119,18 @@ export function BoletimOcorrencia() {
 
     return (
         <main className='min-vh-100 main-container d-flex'>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className=''>
                 <Sidebar />
             </div>

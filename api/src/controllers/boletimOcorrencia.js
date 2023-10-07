@@ -123,6 +123,19 @@ class BoletimOcorrenciaController {
         }
     }
 
+    async getOneDelegacia(request, response) {
+        const httpHelper = new HttpHelper(response);
+        try {
+            const { idDelegacia } = request.params
+            const gestor = await BoletimOcorrenciaModel.count({
+                where: { idDelegacia }
+            });
+            return httpHelper.ok(gestor);
+        } catch (error) {
+            return httpHelper.internalError(gestor);
+        }
+    }
+
     async update(request, response) {
         const httpHelper = new HttpHelper(response);
         try {

@@ -20,6 +20,15 @@ export async function getOneBoletimOcorrencia(id) {
     return result;
 }
 
+export async function getCountIdDelegacia(idDelegacia) {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/allDelegacia/boletimOcorrencia/${idDelegacia}`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
 
 export async function deleteBoletimOcorrencia(id) {
     const accessToken = sessionStorage.getItem('token');

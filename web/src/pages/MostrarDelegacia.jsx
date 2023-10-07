@@ -1,24 +1,24 @@
 import { Container, Col, Button, Row, Pagination } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { useForm } from 'react-hook-form';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { MostrarDelegaciaInput } from "../components/MostrarDelegaciaInput";
 import { Header } from "../components/Header";
 
-import { getOneBoletimOcorrencia } from "../services/boletim-ocorrencia-service";
-import { deleteDelegacia, getDelegacia, updateDelegacia } from "../services/register-delegacia-services";
+import { getOneBoletimOcorrencia, getCountIdDelegacia } from "../services/boletim-ocorrencia-service";
+import { deleteDelegacia, getDelegacia, updateDelegacia, getOneDelegacia } from "../services/register-delegacia-services";
 
 import { Sidebar } from "../components/Sidebar";
 
 export function MostrarDelegacia() {
     const [delegacia, setDelegacia] = useState([]);
     const [busca, setBusca] = useState();
-    const { handleSubmit, register, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
     useEffect(() => {
-        findDelegacia();
+        findDelegacia()
     }, []);
 
     function handleBusca(data) {
@@ -39,15 +39,18 @@ export function MostrarDelegacia() {
 
     async function deleteDelegacia2(id) {
         try {
-            // Check if there are any police reports associated with this police station
-            const boletinsAssociados = delegacia.filter((delegacia) => delegacia.id === id && delegacia.boletinsOcorrencia.length > 0);
+            // Verifique se existem boletins de ocorrência associados a esta delegacia
+            const boletins = await getCountIdDelegacia(id);
+            console.log(boletins.data)
 
-            if (boletinsAssociados.length > 0) {
-                alert("Não é possível apagar a delegacia enquanto existirem boletins de ocorrência associados a ela.");
-            } else {
+            if (boletins.data === 0) {
+                // Não há boletins de ocorrência associados, permita a exclusão
                 await deleteDelegacia(id);
                 await findDelegacia();
-                alert('Delegacia apagada com sucesso!');
+                toast.success('Delegacia excluída com sucesso!');
+            } else {
+                // Existem boletins de ocorrência associados, exiba uma mensagem de erro
+                toast.warning('Não é possível excluir a delegacia, pois existem boletins de ocorrência associados a ela.');
             }
         } catch (error) {
             console.error(error);
@@ -68,7 +71,7 @@ export function MostrarDelegacia() {
                 bairroDelegacia: data.bairroDelegacia
             });
             await findDelegacia();
-            alert('Delegacia atualizada com sucesso!');
+            toast.success('Delegacia atualizada com sucesso!');
 
         } catch (error) {
             console.error(error);
@@ -114,6 +117,18 @@ export function MostrarDelegacia() {
 
     return (
         <main className='min-vh-100 main-container d-flex'>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
             <div className=''>
                 <Sidebar />
             </div>

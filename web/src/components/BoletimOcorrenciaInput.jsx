@@ -43,6 +43,7 @@ export function BoletimOcorrenciaInput(props) {
     async function updateBoletimOcorrencia(data) {
         await props.updateBoletimOcorrencia({ ...data, id: props.boletimOcorrencia.id });
         setIsUpdated(false);
+        coletarDelegacia();
 
 
     }
@@ -54,7 +55,10 @@ export function BoletimOcorrenciaInput(props) {
 
 
     function formatarData(data) {
-        return new Date(data).toLocaleDateString('pt-BR');
+        var current = new Date(data); //'Mar 11 2015' current.getTime() = 1426060964567
+        var followingDay = new Date(current.getTime() + 86400000); // + 1 day in ms
+        data = followingDay.toLocaleDateString('pt-BR');
+        return data;
     }
 
     return (
@@ -79,6 +83,7 @@ export function BoletimOcorrenciaInput(props) {
                         variant="outline-info"
                         className="ms-3"
                         onClick={() => setShowVisualizarModal(true)}
+                        disabled={props.visualizarDisabled}
                     >
                         Visualizar
                     </Button>
@@ -175,8 +180,11 @@ export function BoletimOcorrenciaInput(props) {
                             <Form.Select {...register('statusBoletim')} defaultValue={props.boletimOcorrencia.statusBoletim}>
                                 <option disabled>{props.boletimOcorrencia.statusBoletim}</option>
                                 <option value={'Em andamento...'}>Em andamento...</option>
-                                <option value={'Finalizado'}>Finalizado</option>
-                                <option value={'Em perícia'}>Em perícia</option>
+                                <option value={'Em aberto'}>Em aberto...</option>
+                                <option value={'Em análise...'}>Em análise...</option>
+                                <option value={'Em perícia...'}>Em perícia...</option>
+                                <option value={'Em julgamento'}>Em julgamento...</option>
+                                <option value={'Em suspenso'}>Em suspenso...</option>
                                 <option value={'URGENTE'}>URGENTE</option>
                             </Form.Select>
                             <Form.Group>

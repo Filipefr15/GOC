@@ -51,7 +51,10 @@ export function Perfil() {
 
 
     function formatarData(data) {
-        return new Date(data).toLocaleDateString('pt-BR');
+        var current = new Date(data); //'Mar 11 2015' current.getTime() = 1426060964567
+        var followingDay = new Date(current.getTime() + 86400000); // + 1 day in ms
+        data = followingDay.toLocaleDateString('pt-BR');
+        return data;
     }
 
     return (

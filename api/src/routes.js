@@ -42,6 +42,7 @@ routes.delete('/delete/boletimOcorrencia/:id', authMiddleware, boletimOcorrencia
 routes.get('/achar/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.getAll)
 routes.put('/atualizar/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.update)
 routes.get('/one/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.getOne);
+routes.get('/allDelegacia/boletimOcorrencia/:idDelegacia', authMiddleware, boletimOcorrenciaController.getOneDelegacia);
 
 routes.post('/register/boletimOcorrencia/public', boletimOcorrenciaController.register)
 
