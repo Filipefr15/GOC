@@ -74,6 +74,8 @@ export function RegisterBoletimOcorrencia() {
                                     }
                                 })}
                             />
+
+
                             <SelectOcorrenciaInput
                                 className="mb-4"
                                 label="Tipo de Ocorrência"
@@ -156,7 +158,7 @@ export function RegisterBoletimOcorrencia() {
                                 type="textarea form-control"
                                 placeholder="Insira os detalhes do local da ocorrência"
                                 error={errors.detalhesLocalOcorrencia}
-                                required={false}
+                                required={true}
                                 name="detalhesLocalOcorrencia"
                                 validations={register('detalhesLocalOcorrencia', {
                                 })}
@@ -241,11 +243,6 @@ export function RegisterBoletimOcorrencia() {
                                     required: {
                                         value: true,
                                         message: 'RG é obrigatório'
-                                    }
-                                    ,
-                                    pattern: {
-                                        value: /^[0-9]{7}$/,
-                                        message: "RG inválido!"
                                     }
                                 })}
 
