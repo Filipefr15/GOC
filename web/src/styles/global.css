@@ -42,5 +42,9 @@ h2 {
 }
 
 hr {
-    color:black;
+    color: black;
+}
+
+.boletimHeader {
+    color: white;
 }

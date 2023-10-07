@@ -7,7 +7,7 @@ import { MostrarDelegaciaInput } from "../components/MostrarDelegaciaInput";
 import { Header } from "../components/Header";
 import { Input } from '../components/Input';
 
-
+import { getOneBoletimOcorrencia } from "../services/boletim-ocorrencia-service";
 import { deleteDelegacia, getDelegacia, updateDelegacia } from "../services/register-delegacia-services";
 
 import { Sidebar } from "../components/Sidebar";
@@ -15,13 +15,14 @@ import { Sidebar } from "../components/Sidebar";
 export function MostrarDelegacia() {
     const [delegacia, setDelegacia] = useState([]);
     const [isCreated, setIsCreated] = useState(false);
+    const [deletarDelegacia, setDeletarDelegacia] = useState();
     const { handleSubmit, register, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
     useEffect(() => {
         findDelegacia();
-        // eslint-disable-next-line
     }, []);
+
 
     async function findDelegacia() {
         try {
@@ -35,12 +36,21 @@ export function MostrarDelegacia() {
 
     async function deleteDelegacia2(id) {
         try {
-            await deleteDelegacia(id);
-            await findDelegacia();
+            // Check if there are any police reports associated with this police station
+            const boletinsAssociados = delegacia.filter((delegacia) => delegacia.id === id && delegacia.boletinsOcorrencia.length > 0);
+
+            if (boletinsAssociados.length > 0) {
+                alert("Não é possível apagar a delegacia enquanto existirem boletins de ocorrência associados a ela.");
+            } else {
+                await deleteDelegacia(id);
+                await findDelegacia();
+                alert('Delegacia apagada com sucesso!');
+            }
         } catch (error) {
             console.error(error);
         }
     }
+
 
 
     async function updateDelegacia2(data) {

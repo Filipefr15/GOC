@@ -45,12 +45,15 @@ export function RegisterDelegacia() {
                 noValidate
                 validated={!!errors}
                 onSubmit={handleSubmit(onSubmitt)}
-                className="bg-light rounded p-5 shadow w-55 m-auto mt-3 mb-3"
+                className="bg-light rounded p-5 shadow w-50 m-auto mt-5 mb-auto"
             >
                 <div className="container">
-                    <Header title="Registrar Nova Delegacia" />
-                    <h2>Dados da Delegacia</h2>
-                    <h3 className="teste">Insira o nome do Delegado e da Delegacia abaixo</h3>
+                    {/* <Header title="Registrar Nova Delegacia" /> */}
+                    <div class="text-center">
+                        <h2 >Dados da Delegacia</h2>
+                        <h3 className="teste">Insira o nome do Delegado e da Delegacia abaixo</h3>
+                    </div>
+
                     <hr  ></hr>
 
                     <Input

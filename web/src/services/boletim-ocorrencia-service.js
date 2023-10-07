@@ -10,6 +10,17 @@ export async function getBoletimOCorrencia() {
     return result;
 }
 
+export async function getOneBoletimOcorrencia(id) {
+    const accessToken = sessionStorage.getItem('token');
+    const result = await api.get(`/one/boletimOcorrencia/${id}`, {
+        headers: {
+            'Authorization': `Bearer ${JSON.parse(accessToken)}`
+        }
+    });
+    return result;
+}
+
+
 export async function deleteBoletimOcorrencia(id) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.delete(`/delete/boletimOcorrencia/${id}`, {

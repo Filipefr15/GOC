@@ -10,6 +10,8 @@ import { FaSadCry } from 'react-icons/fa'
 import { countFurtos, countRoubos, countInjurias, countBoletinsUrgentes } from '../services/boletim-ocorrencia-service'
 import { Graphic } from "../components/Graphic";
 import { Cards } from "../components/Cards";
+import { Col } from "react-bootstrap";
+import { Graphic2 } from '../components/Graphic2';
 
 
 
@@ -123,7 +125,7 @@ export function TelaInicial() {
             </div>
             <div className='w-75 p-4'>
                 <div className='main-title'>
-                    <h3>DASHBOARD</h3>
+                    <h3>DASHBOARDS</h3>
                 </div>
                 {/* --select bo."tipoOcorrencia" , count(1) total from "boletimOcorrencia" bo group by bo."tipoOcorrencia" */}
                 <div className='main-cards'>
@@ -158,11 +160,16 @@ export function TelaInicial() {
                     </div>
                 </div>
 
-                <div style={{ backgroundColor: '#1d2634', width: '100%', height: '400px' }}>
 
-
-                    <Graphic />
-                    {/* <ResponsiveContainer width="100%" height="100%">
+                <div className="row">
+                    <Col sm={6}>
+                        <Graphic />
+                    </Col>
+                    <Col sm={6}>
+                        <Graphic2 />
+                    </Col>
+                </div>
+                {/* <ResponsiveContainer width="100%" height="100%">
                         <BarChart
                             width={500}
                             height={300}
@@ -206,7 +213,7 @@ export function TelaInicial() {
                         </LineChart>
                     </ResponsiveContainer> */}
 
-                </div>
+
             </div>
 
         </main>

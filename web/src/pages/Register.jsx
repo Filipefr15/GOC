@@ -9,6 +9,7 @@ import { Header } from '../components/Header';
 import { Modal } from '../components/Modal';
 
 import { registerUser } from "../services/usuarios-service";
+import { HeaderBlack } from "../components/HeaderBlack";
 
 export function Register() {
     const { handleSubmit, register, formState: { errors } } = useForm();
@@ -46,7 +47,7 @@ export function Register() {
                 className="bg-light rounded p-5 shadow w-100 m-auto mt-5 "
             >
                 <div className="container m-auto">
-                    <Header title="Registrar" />
+                    <HeaderBlack title="Registrar" />
                     <div className="row">
                         <Col sm={6}>
                             <Input

@@ -3,7 +3,7 @@ import { Chart } from 'react-google-charts';
 
 import { getBoletimOCorrencia } from "../services/boletim-ocorrencia-service";
 
-export function Graphic() {
+export function Graphic2() {
   const [examData, setExamData] = useState([]);
 
   useEffect(() => {
@@ -15,14 +15,14 @@ export function Graphic() {
         // Trate os dados para contar a quantidade de cada tipo de exame
         const examCount = {};
         rawData.forEach((exam) => {
-          const { bairroOcorrencia } = exam;
-          examCount[bairroOcorrencia] = (examCount[bairroOcorrencia] || 0) + 1;
+          const { tipoOcorrencia } = exam;
+          examCount[tipoOcorrencia] = (examCount[tipoOcorrencia] || 0) + 1;
         });
 
         // Transforme os dados em um formato adequado para o gráfico de pizza do Google Charts
         const chartData = [['Tipo de Exame', 'Quantidade']];
-        Object.keys(examCount).forEach((bairroOcorrencia) => {
-          chartData.push([bairroOcorrencia, examCount[bairroOcorrencia]]);
+        Object.keys(examCount).forEach((tipoOcorrencia) => {
+          chartData.push([tipoOcorrencia, examCount[tipoOcorrencia]]);
         });
 
         setExamData(chartData);
@@ -40,7 +40,7 @@ export function Graphic() {
         chartType="PieChart"
         data={examData}
         options={{
-          title: 'Porcentagem de Crimes por Bairro',
+          title: 'Porcentagem de tipos de Ocorrências',
           backgroundColor: 'transparent',
           titleTextStyle: {
             color: 'white',

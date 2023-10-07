@@ -1,6 +1,6 @@
-export function Header(props) {
+export function HeaderBlack(props) {
     return (
-        <header className="text-light">
+        <header className="text-dark">
             <h1 className="text-center p-3">{props.title}</h1>
         </header>
     )
