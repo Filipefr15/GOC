@@ -37,11 +37,13 @@ routes.get('/all/delegacias', authMiddleware, delegaciaController.getAll);
 routes.put('/update/delegacia/:id', authMiddleware, delegaciaController.update);
 routes.get('/one/delegacia/:id', authMiddleware, delegaciaController.getOne);
 
-routes.post('/register/boletimOcorrencia', boletimOcorrenciaController.register)
+routes.post('/register/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.register)
 routes.delete('/delete/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.delete);
 routes.get('/achar/boletimOcorrencia', authMiddleware, boletimOcorrenciaController.getAll)
 routes.put('/atualizar/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.update)
 routes.get('/one/boletimOcorrencia/:id', authMiddleware, boletimOcorrenciaController.getOne);
+
+routes.post('/register/boletimOcorrencia/public', boletimOcorrenciaController.register)
 
 routes.get('/contar/boletimOcorrencia/furtos', authMiddleware, boletimOcorrenciaController.countFurtos);
 routes.get('/contar/boletimOcorrencia/roubos', authMiddleware, boletimOcorrenciaController.countRoubos);

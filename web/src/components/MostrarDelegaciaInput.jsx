@@ -11,6 +11,7 @@ export function MostrarDelegaciaInput(props) {
     const [showVisualizarModal, setShowVisualizarModal] = useState(false);
     const [isDelegaciaAtrelada, setIsDelegaciaAtrelada] = useState(false);
 
+
     async function updateDelegacia(data) {
         await props.updateDelegacia({ ...data, id: props.delegacia.id });
         setIsUpdated(false);
