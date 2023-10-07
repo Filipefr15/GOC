@@ -5,7 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { SelectInput } from "../components/Input estado";
 import { Input } from "../components/Input";
-import { Header } from '../components/Header';
 import { Modal } from '../components/Modal';
 
 import { registerUser } from "../services/usuarios-service";

@@ -1,11 +1,10 @@
-import { Container, Col, Modal, Form, Button, Row, Pagination } from "react-bootstrap";
+import { Container, Col, Button, Row, Pagination } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useForm } from 'react-hook-form';
 
 import { MostrarDelegaciaInput } from "../components/MostrarDelegaciaInput";
 import { Header } from "../components/Header";
-import { Input } from '../components/Input';
 
 import { getOneBoletimOcorrencia } from "../services/boletim-ocorrencia-service";
 import { deleteDelegacia, getDelegacia, updateDelegacia } from "../services/register-delegacia-services";
@@ -14,9 +13,7 @@ import { Sidebar } from "../components/Sidebar";
 
 export function MostrarDelegacia() {
     const [delegacia, setDelegacia] = useState([]);
-    const [isCreated, setIsCreated] = useState(false);
     const [busca, setBusca] = useState();
-    const [deletarDelegacia, setDeletarDelegacia] = useState();
     const { handleSubmit, register, formState: { errors } } = useForm();
     const navigate = useNavigate();
 

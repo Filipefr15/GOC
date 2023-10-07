@@ -30,7 +30,6 @@ export function BoletimOcorrencia() {
 
     useEffect(() => {
         findBoletimOcorrencia();
-        // eslint-disable-next-line
     }, []);
 
     async function findBoletimOcorrencia() {

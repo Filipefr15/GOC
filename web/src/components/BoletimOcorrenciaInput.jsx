@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { getOneDelegacia } from "../services/register-delegacia-services"
 import { getDelegacia } from "../services/register-delegacia-services"
 
+import "../styles/global.css"
+
 import { Input } from "./Input";
 
 export function BoletimOcorrenciaInput(props) {
@@ -24,7 +26,7 @@ export function BoletimOcorrenciaInput(props) {
         async function fetchData() {
             try {
                 const response = await getDelegacia();
-                setDelegacias(response.data);
+                setDelegacias(response.data); // Supondo que o resultado da API seja um array de objetos de delegacias
             } catch (error) {
                 console.error("Erro ao buscar delegacias:", error);
             }
@@ -100,7 +102,11 @@ export function BoletimOcorrenciaInput(props) {
 
             <Modal show={showVisualizarModal} onHide={() => setShowVisualizarModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Dados do Boletim de Ocorrência</Modal.Title>
+                    <Modal.Title>
+                        <div className="divVisualizar">
+                            Dados do Boletim de Ocorrência
+                        </div>
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <p><strong>Data Protocolo Boletim Ocorrência: </strong>{formatarData(props.boletimOcorrencia.data)}</p>
@@ -132,7 +138,7 @@ export function BoletimOcorrenciaInput(props) {
                 </Modal.Header>
                 <Form noValidate onSubmit={handleSubmit(updateBoletimOcorrencia)} validated={!!errors}>
                     <Modal.Body>
-                        <Input
+                        {/* <Input
                             className="mb-3"
                             type='text'
                             defaultValue={props.boletimOcorrencia.statusBoletim}
@@ -163,21 +169,20 @@ export function BoletimOcorrenciaInput(props) {
                                     message: 'Status do Boletim de Ocorrência é Obrigatório.'
                                 }
                             })}
-                        />
+                        /> */}
                         <Form.Group>
-                            <Form.Label>Selecione o NOVO status do Boletim de Ocorrência</Form.Label>
+                            <Form.Label>Selecione o status do Boletim de Ocorrência</Form.Label>
                             <Form.Select {...register('statusBoletim')} defaultValue={props.boletimOcorrencia.statusBoletim}>
-                                <option disabled>Clique para selecionar</option>
+                                <option disabled>{props.boletimOcorrencia.statusBoletim}</option>
                                 <option value={'Em andamento...'}>Em andamento...</option>
                                 <option value={'Finalizado'}>Finalizado</option>
                                 <option value={'Em perícia'}>Em perícia</option>
                                 <option value={'URGENTE'}>URGENTE</option>
                             </Form.Select>
-                            <Form.Label>Selecione a Delegacia</Form.Label>
                             <Form.Group>
                                 <Form.Label>Selecione a Delegacia</Form.Label>
                                 <Form.Select {...register('idDelegacia')} defaultValue={props.boletimOcorrencia.idDelegacia}>
-                                    <option disabled>Clique para selecionar</option>
+                                    <option disabled></option>
                                     {delegacias.map((delegacia) => (
                                         <option key={delegacia.id} value={delegacia.id}>
                                             {delegacia.nomeDelegacia}

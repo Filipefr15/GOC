@@ -21,12 +21,15 @@ export function Perfil() {
     const [isUpdated, setIsUpdated] = useState(false);
     const navigate = useNavigate();
     const [usuario, setUsuario] = useState([]);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+
 
     async function updateUsuarios(data) {
         await updateUser({ name: data.name, email: data.email, password: data.password, cpf: data.cpf, rg: data.rg, estado: data.estado, municipio: data.municipio, bairro: data.bairro, cep: data.cep, dataNasc: data.dataNasc });
         console.log(data);
         findUsuario();
         setIsUpdated(false);
+        setShowSuccessModal(true);
     }
 
     useEffect(() => {
@@ -40,7 +43,7 @@ export function Perfil() {
             const result = await getOneUsuarios(id.data);
             console.log(result);
             setUsuario(result.data);
-            
+
         } catch (error) {
             console.error(error);
         }
@@ -53,6 +56,20 @@ export function Perfil() {
 
     return (
         <main className='vh-100 main-container d-flex'>
+            <Modal show={showSuccessModal} onHide={() => setShowSuccessModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edição Concluída</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>Edição concluída com sucesso!</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowSuccessModal(false)}>
+                        Fechar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+
             <Modal show={isUpdated} onHide={() => setIsUpdated(false)}>
                 <Modal.Header>
                     <Modal.Title>Editar Perfil</Modal.Title>
@@ -343,9 +360,9 @@ export function Perfil() {
                         </div>
                         <hr></hr>
                         <div className="w-100 d-flex justify-content-end">
-                        <Button variant="primary" onClick={() => setIsUpdated(true)}>
-                            Editar
-                        </Button>
+                            <Button variant="primary" onClick={() => setIsUpdated(true)}>
+                                Editar
+                            </Button>
                             {/* <button onClick={() => setIsUpdated(true)}>
                                 Editar
                             </button> */}

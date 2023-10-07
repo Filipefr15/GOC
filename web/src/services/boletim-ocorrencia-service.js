@@ -34,7 +34,8 @@ export async function deleteBoletimOcorrencia(id) {
 export async function updateBoletimOcorrencia(data) {
     const accessToken = sessionStorage.getItem('token');
     const result = await api.put(`/atualizar/boletimOcorrencia/${data.id}`, {
-        statusBoletim: data.statusBoletim
+        statusBoletim: data.statusBoletim,
+        idDelegacia: data.idDelegacia
     }, {
         headers: {
             'Authorization': `Bearer ${JSON.parse(accessToken)}`

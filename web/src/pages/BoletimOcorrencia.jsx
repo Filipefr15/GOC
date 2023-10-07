@@ -6,7 +6,7 @@ import '../styles/global.css'
 
 import { SelectInput } from "../components/Input estado";
 import { Input } from "../components/Input";
-import { Header } from '../components/Header';
+import { HeaderBlack } from '../components/HeaderBlack';
 import { Modal } from '../components/Modal';
 
 import { registerBoletimOcorrencia } from "../services/boletim-ocorrencia-service";
@@ -52,7 +52,7 @@ export function RegisterBoletimOcorrencia() {
                 className="bg-light rounded p-5 shadow w-100 m-auto mt-3 mb-3"
             >
                 <div className="container">
-                    <Header title="Registrar Boletim de Ocorrência" />
+                    <HeaderBlack title="Registrar Boletim de Ocorrência" />
                     <div className="row">
                         <Col sm={6}>
                             <h2>Dados da Ocorrência</h2>
