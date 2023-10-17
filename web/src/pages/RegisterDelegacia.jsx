@@ -10,6 +10,7 @@ import { Header } from '../components/Header';
 import { Modal } from '../components/Modal';
 
 import { registerDelegacia } from "../services/register-delegacia-services";
+import { SelectInputMT } from "../components/InputEstadoMT";
 
 export function RegisterDelegacia() {
     const { handleSubmit, register, formState: { errors } } = useForm();
@@ -87,7 +88,7 @@ export function RegisterDelegacia() {
                         })}
                     />
 
-                    <SelectInput
+                    <SelectInputMT
                         className="mb-4"
                         aria-label="Default select example"
                         label="Estado"

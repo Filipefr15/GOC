@@ -93,7 +93,7 @@ export function Login() {
                         <div className="d-flex justify-content-between mb-4">
 
                             <Link to="/register">Criar conta</Link>
-                            <Link to="/register">Esqueci a senha</Link>
+
                         </div>
 
                         <Button type="submit" className="w-100 btn-lg">Login</Button>

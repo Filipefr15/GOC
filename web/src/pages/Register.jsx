@@ -199,7 +199,7 @@ export function Register() {
                                         message: 'E-mail é obrigatório'
                                     },
                                     pattern: {
-                                        value: /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i,
+                                        value: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
                                         message: 'E-mail inválido!'
                                     }
                                 })}
